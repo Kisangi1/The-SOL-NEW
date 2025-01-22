@@ -4,7 +4,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useUser, useClerk } from "@clerk/nextjs"
-import { ChevronDown, ChevronRight, Home, LogOut, Menu, Settings, X, PenTool, Leaf, UserCircle, Package, BookOpen, FileText,Plane  } from 'lucide-react'
+import { ChevronDown, ChevronRight, Home, LogOut, Menu, Settings, X, PenTool,  UserCircle, Package, BookOpen, FileText,Plane  } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import {
@@ -137,8 +137,7 @@ export default function Component({ isOpen, setIsOpen }: SidebarProps) {
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-6 text-primary">
             <div className="flex items-center space-x-2">
-              <Leaf className="h-6 w-6" />
-              <h2 className="text-lg font-bold"> Forestline Tours</h2>
+              <h2 className="text-md font-bold">The Sol Of Africa</h2>
             </div>
             <Button
               variant="ghost"

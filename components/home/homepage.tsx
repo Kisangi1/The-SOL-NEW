@@ -1,10 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { FeaturesSection } from "@/components/home/features-section"
+import  FeaturesSection  from "@/components/home/features-section"
 import { BlogsSection } from "@/components/home/offers-section"
-import { CategoriesSection } from "@/components/home/categories-section"
-import { WorldMap } from "@/components/home/world-map"
 import { DestinationCard } from "@/components/home/destination-card"
 import { DestinationSkeleton } from "@/components/home/destination-sketelon"
 
@@ -42,12 +40,12 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-        <div className="inline-flex items-center rounded-full bg-green-100 px-4 py-1 text-sm text-green-600">
+        <div className="inline-flex items-center rounded-full bg-amber-600 px-4 py-1 text-sm text-white">
              Made for you
             </div>
-          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold mb-1 mt-4">Recommendations for you</h2>
+          <h2 className="text-xl md:text-2xl lg:text-2xl xl:text-4xl font-bold mb-2 mt-4 ">Where to next?</h2>
           {loading ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
               {[...Array(5)].map((_, index) => (
@@ -72,9 +70,7 @@ export default function HomePage() {
         </div>
       </section>
       <FeaturesSection />
-      <CategoriesSection />
       <BlogsSection />
-      <WorldMap />
     </main>
   )
 }

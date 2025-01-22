@@ -21,12 +21,14 @@ model Blog {
   id         String   @id @default(cuid())
   title      String
   content    String
+  excerpt    String?
   authorId   String
   tags       String[]
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   authorName String
   imageData  String?
+  category  String?
 }
 
 model Booking {

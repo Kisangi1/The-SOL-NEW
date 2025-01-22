@@ -2,7 +2,8 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Leaf, Menu, ChevronRight } from 'lucide-react'
+import Image from "next/image"
+import { Menu, ChevronRight } from 'lucide-react'
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -22,100 +23,80 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-emerald-950 ">
+    <header className="sticky top-0 z-50 w-full bg-gray-900 shadow-lg">
       <nav className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-20 sm:h-32 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <Leaf className="h-8 w-8 text-green-600" />
-            <span className="hidden text-xl font-bold text-gray-100 sm:inline-block">
-              Forestline Tours 
+            <Image 
+              src="/images/logo.jpeg" 
+              alt="Sol of African Tours" 
+              width={120} 
+              height={120}
+              className="hidden sm:block rounded-full"
+            />
+            <span className="text-xl font-bold text-orange-500">
+              Sol of African Tours
             </span>
           </Link>
-          <div className="hidden sm:block ">
+          <div className="hidden lg:block">
             <NavigationMenu>
-              <NavigationMenuList className="flex space-x-4">
+              <NavigationMenuList className="flex space-x-6">
                 <NavigationMenuItem>
                   <Link href="/" legacyBehavior passHref>
-                    <NavigationMenuLink className="text-white hover:text-green-600 transition-colors">
+                    <NavigationMenuLink className="text-white hover:text-orange-500 transition-colors">
                       Home
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <Link href="/about" legacyBehavior passHref>
-                    <NavigationMenuLink className="text-white hover:text-green-600 transition-colors">
+                    <NavigationMenuLink className="text-white hover:text-orange-500 transition-colors">
                       About
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/sustainability" legacyBehavior passHref>
-                    <NavigationMenuLink className="text-white hover:text-green-600 transition-colors">
-                    Sustainability
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <Link href="/packages" legacyBehavior passHref>
-                    <NavigationMenuLink className="text-white hover:text-green-600  transition-colors">
-                      Tour Packages
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="group text-white bg-emerald-950 hover:text-white transition-colors  ">
+                  <NavigationMenuTrigger className="text-white bg-gray-900 hover:text-orange-500 transition-colors">
                     Destinations
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[500px] grid-cols-3 gap-4 p-4 bg-emerald-950  text-white">
+                    <div className="grid w-[500px] gap-4 p-4 bg-gray-900 text-white">
                       <div>
-                        <h3 className="font-medium text-muted-foreground mb-2">Africa</h3>
-                        <ul className="space-y-2">
-                          <li><Link href="/destinations/botswana" className="flex items-center text-sm hover:text-green-600">Botswana <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/kenya" className="flex items-center text-sm hover:text-green-600">Kenya <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/namibia" className="flex items-center text-sm hover:text-green-600">Namibia <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/tanzania" className="flex items-center text-sm hover:text-green-600">Tanzania <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/south-africa" className="flex items-center text-sm hover:text-green-600">South Africa <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-muted-foreground mb-2">Asia</h3>
-                        <ul className="space-y-2">
-                          <li><Link href="/destinations/indonesia" className="flex items-center text-sm hover:text-green-600">Indonesia <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/sri-lanka" className="flex items-center text-sm hover:text-green-600">Sri Lanka <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/singapore" className="flex items-center text-sm hover:text-green-600">Singapore <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/vietnam" className="flex items-center text-sm hover:text-green-600">Vietnam <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 className="font-medium text-muted-foreground mb-2">Middle East</h3>
-                        <ul className="space-y-2">
-                          <li><Link href="/destinations/jordan" className="flex items-center text-sm hover:text-green-600">Jordan <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/uae" className="flex items-center text-sm hover:text-green-600">UAE <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                        <h3 className="font-medium text-orange-500 mb-2">Popular Destinations</h3>
+                        <ul className="grid grid-cols-2 gap-2">
+                          <li><Link href="/destinations/masai-mara" className="flex items-center text-sm hover:text-orange-500">Masai Mara <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/destinations/nairobi-national-park" className="flex items-center text-sm hover:text-orange-500">Nairobi National Park <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/destinations/amboseli" className="flex items-center text-sm hover:text-orange-500">Amboseli <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/destinations/samburu" className="flex items-center text-sm hover:text-orange-500">Samburu <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/destinations/kenyan-coast" className="flex items-center text-sm hover:text-orange-500">Kenyan Coast <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/destinations/serengeti" className="flex items-center text-sm hover:text-orange-500">Serengeti <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/destinations/arusha" className="flex items-center text-sm hover:text-orange-500">Arusha <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/destinations/zanzibar" className="flex items-center text-sm hover:text-orange-500">Zanzibar <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
                         </ul>
                       </div>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/blogs" legacyBehavior passHref>
-                    <NavigationMenuLink className="text-white hover:text-green-600 transition-colors">
-                      Blog
+                  <Link href="/packages" legacyBehavior passHref>
+                    <NavigationMenuLink className="text-white hover:text-orange-500 transition-colors">
+                      Safari Packages
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                  <Link href="/gallery" legacyBehavior passHref>
-                    <NavigationMenuLink className="text-white hover:text-green-600 transition-colors">
-                      Gallery
+                  <Link href="/blogs" legacyBehavior passHref>
+                    <NavigationMenuLink className="text-white hover:text-orange-500 transition-colors">
+                      Blogs
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+               
                 <NavigationMenuItem>
                   <Link href="/contact" legacyBehavior passHref>
-                    <NavigationMenuLink className="text-white hover:text-green-600 transition-colors">
-                      Contact
-                    </NavigationMenuLink>
+                    <Button variant="outline" className="bg-orange-600 hover:bg-orange-700 text-white border-none">
+                      Enquire Now
+                    </Button>
                   </Link>
                 </NavigationMenuItem>
               </NavigationMenuList>
@@ -126,13 +107,13 @@ const Navbar = () => {
               <Button
                 variant="outline"
                 size="icon"
-                className="shrink-0 md:hidden bg-emerald-950 text-white"
+                className="lg:hidden bg-gray-900 text-white border-orange-500"
               >
-                <Menu className="h-5 w-5 text-white " />
-                <span className="sr-only text-white">Toggle menu</span>
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="p-0 t">
+            <SheetContent side="left" className="p-0">
               <MobileNav onClose={() => setIsOpen(false)} />
             </SheetContent>
           </Sheet>
@@ -143,71 +124,52 @@ const Navbar = () => {
 }
 
 const MobileNav = ({ onClose }: { onClose: () => void }) => {
+  const [destinationsOpen, setDestinationsOpen] = React.useState(false)
+
   return (
-    <div className="h-full flex flex-col bg-emerald-950 text-white">
-      <div className="p-4 border-b border-green-100 flex items-center justify-between">
-        <Link href="#" className="flex items-center space-x-2" onClick={onClose}>
-          <Leaf className="h-6 w-6 text-green-600" />
-          <span className="text-md font-bold text-white">
-            Forestline Tours
-          </span>
-        </Link>
+    <div className="h-full flex flex-col bg-gray-900 text-white">
+      <div className="p-4 border-b border-gray-800">
+        <span className="text-lg font-bold text-orange-500">
+          Sol of African Tours
+        </span>
       </div>
-      <div className="flex-1 overflow-y-auto" style={{ maxHeight: 'calc(100vh - 100px)' }}>
-        <div className="flex flex-col space-y-4 p-4">
-          <Link href="/" className="text-lg font-semibold hover:text-green-600 transition-colors" onClick={onClose}>
+      <div className="flex-1 overflow-y-auto">
+        <div className="flex flex-col p-4">
+          <Link href="/" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
             Home
           </Link>
-          <Link href="/about" className="text-lg font-semibold hover:text-green-600 transition-colors" onClick={onClose}>
+          <Link href="/about" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
             About
           </Link>
-          <Link href="/sustainability" className="text-lg font-semibold hover:text-green-600 transition-colors" onClick={onClose}>
-          Sustainability
-          </Link>
-          <Link href="/packages" className="text-lg font-semibold hover:text-green-600 transition-colors" onClick={onClose}>
-            Tour Packages
-          </Link>
-          
-          <div className="space-y-4">
-            <h2 className="text-lg font-semibold">Destinations</h2>
-            <div className="ml-4 space-y-4">
-              <div>
-                <h3 className="font-medium text-muted-foreground mb-2">Africa</h3>
-                <ul className="ml-2 space-y-2">
-                  <li><Link href="/destinations/botswana" className="block text-sm hover:text-green-600" onClick={onClose}>Botswana</Link></li>
-                  <li><Link href="/destinations/kenya" className="block text-sm hover:text-green-600" onClick={onClose}>Kenya</Link></li>
-                  <li><Link href="/destinations/namibia" className="block text-sm hover:text-green-600" onClick={onClose}>Namibia</Link></li>
-                  <li><Link href="/destinations/tanzania" className="block text-sm hover:text-green-600" onClick={onClose}>Tanzania</Link></li>
-                  <li><Link href="/destinations/south-africa" className="block text-sm hover:text-green-600" onClick={onClose}>South Africa</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-medium text-muted-foreground mb-2">Asia</h3>
-                <ul className="ml-2 space-y-2">
-                  <li><Link href="/destinations/indonesia" className="block text-sm hover:text-green-600" onClick={onClose}>Indonesia</Link></li>
-                  <li><Link href="/destinations/sri-lanka" className="block text-sm hover:text-green-600" onClick={onClose}>Sri Lanka</Link></li>
-                  <li><Link href="/destinations/singapore" className="block text-sm hover:text-green-600" onClick={onClose}>Singapore</Link></li>
-                  <li><Link href="/destinations/vietnam" className="block text-sm hover:text-green-600" onClick={onClose}>Vietnam</Link></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-medium text-muted-foreground mb-2">Middle East</h3>
-                <ul className="ml-2 space-y-2">
-                  <li><Link href="/destinations/jordan" className="block text-sm hover:text-green-600" onClick={onClose}>Jordan</Link></li>
-                  <li><Link href="/destinations/uae" className="block text-sm hover:text-green-600" onClick={onClose}>UAE</Link></li>
-                </ul>
-              </div>
+          <button
+            onClick={() => setDestinationsOpen(!destinationsOpen)}
+            className="py-2 text-lg text-left hover:text-orange-500 transition-colors flex items-center justify-between"
+          >
+            Destinations
+            <ChevronRight className={`h-5 w-5 transition-transform ${destinationsOpen ? 'rotate-90' : ''}`} />
+          </button>
+          {destinationsOpen && (
+            <div className="ml-4 space-y-2 mt-2">
+              <ul className="space-y-2">
+                <li><Link href="/destinations/masai-mara" className="block text-sm hover:text-orange-500" onClick={onClose}>Masai Mara</Link></li>
+                <li><Link href="/destinations/nairobi-national-park" className="block text-sm hover:text-orange-500" onClick={onClose}>Nairobi National Park</Link></li>
+                <li><Link href="/destinations/amboseli" className="block text-sm hover:text-orange-500" onClick={onClose}>Amboseli</Link></li>
+                <li><Link href="/destinations/samburu" className="block text-sm hover:text-orange-500" onClick={onClose}>Samburu</Link></li>
+                <li><Link href="/destinations/kenyan-coast" className="block text-sm hover:text-orange-500" onClick={onClose}>Kenyan Coast</Link></li>
+                <li><Link href="/destinations/serengeti" className="block text-sm hover:text-orange-500" onClick={onClose}>Serengeti</Link></li>
+                <li><Link href="/destinations/arusha" className="block text-sm hover:text-orange-500" onClick={onClose}>Arusha</Link></li>
+                <li><Link href="/destinations/zanzibar" className="block text-sm hover:text-orange-500" onClick={onClose}>Zanzibar</Link></li>
+              </ul>
             </div>
-          </div>
-          
-          <Link href="/blogs" className="text-lg font-semibold hover:text-green-600 transition-colors" onClick={onClose}>
-            Blog
+          )}
+          <Link href="/packages" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
+            Safari Packages
           </Link>
-          <Link href="/gallery" className="text-lg font-semibold hover:text-green-600 transition-colors" onClick={onClose}>
-            Gallery
+          <Link href="/blogs" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
+            Blogs
           </Link>
-          <Link href="/contact" className="text-lg font-semibold hover:text-green-600 transition-colors" onClick={onClose}>
-            Contact
+          <Link href="/contact" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
+          Contact Us
           </Link>
         </div>
       </div>

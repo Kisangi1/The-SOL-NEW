@@ -44,14 +44,14 @@ export function BlogsSection() {
   // Rendering skeletons for loading state
   if (isLoading) {
     return (
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-        <div className="inline-flex items-center rounded-full bg-green-100 px-4 py-1 text-sm text-green-600">
-            Get the lastst blogs
+        <div className="inline-flex items-center rounded-full bg-amber-600  px-4 py-1 text-sm text-white">
+            Get the  latest blogs
             </div>
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-8 flex items-center justify-between bg-gray-50">
             <h2 className="text-2xl font-bold mt4 mb-1">Check our latest blogs</h2>
-            <Link href="/blogs" className="text-green-600 text-md hover:underline">
+            <Link href="/blogs" className="text-amber-600  text-md hover:underline">
               View Blogs
             </Link>
           </div>
@@ -88,7 +88,7 @@ export function BlogsSection() {
   // No Blogs State
   if (blogs.length === 0) {
     return (
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4 text-center">
           No blogs available
         </div>
@@ -98,11 +98,11 @@ export function BlogsSection() {
 
   // Blogs Render
   return (
-    <section className="py-16">
+    <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-2xl font-bold">Check our latest blogs</h2>
-          <Link href="/blogs" className="text-green-600 hover:underline">
+          <Link href="/blogs" className="text-amber-600 hover:underline">
             View Blogs
           </Link>
         </div>

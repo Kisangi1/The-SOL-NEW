@@ -1,82 +1,104 @@
-import { Button } from "@/components/ui/button"
-import { Clock, Building2, FileText, Search } from 'lucide-react'
-import Image from 'next/image'
-import Link from "next/link"
-import UserAvatars from '@/components/home/user-avartar'
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { Bus,  Compass, TentTree, Camera, LucideIcon } from 'lucide-react';
+import Image from 'next/image';
+import Link from "next/link";
 
-export function FeaturesSection() {
+
+const FeatureCard = ({ icon: Icon, title, description }: { icon: LucideIcon, title: string, description: string }) => (
+  <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+    <div className="bg-amber-100 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+      <Icon className="h-6 w-6 text-amber-600" />
+    </div>
+    <h3 className="text-lg font-semibold mb-2">{title}</h3>
+    <p className="text-gray-600">{description}</p>
+  </div>
+);
+
+export default function FeaturesSection() {
+  const features = [
+    {
+      icon: Bus,
+      title: "Safari Adventures",
+      description: "Experience breathtaking wildlife encounters in their natural habitat"
+    },
+    {
+      icon: Compass,
+      title: "Expert Guides",
+      description: "Local guides with deep knowledge of African terrain and wildlife"
+    },
+    {
+      icon: TentTree,
+      title: "Luxury Camps",
+      description: "Premium accommodations blending comfort with wilderness"
+    },
+    {
+      icon: Camera,
+      title: "Photo Safari",
+      description: "Perfect moments to capture Africa's stunning landscapes"
+    }
+  ];
+
   return (
-    <section className="py-16">
+    <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <div className="space-y-6">
-            <div className="inline-flex items-center rounded-full bg-green-100 px-4 py-1 text-sm text-green-600">
-             Travel Service
+        <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="lg:w-1/2 space-y-8">
+            <div className="inline-flex items-center rounded-full bg-amber-600  px-4 py-1 text-sm text-white">
+              Discover Africa
             </div>
-            <h2 className="text-2xl font-bold leading-tight sm:text-4xl">Choose the best holiday package for you</h2>
-            <p className="text-gray-600">
-              Our service always provide the best service for our customer happiness and comfort. As many choice to enjoy our
-              customer holiday
-            </p>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-green-100/50 p-2">
-                  <Clock className="h-5 w-5 text-green-600" />
-                </div>
-                <span>24/7 Service admin</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-green-100/50 p-2">
-                  <Building2 className="h-5 w-5 text-green-600" />
-                </div>
-                <span>Best Travel Accomodation</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-green-100/50 p-2">
-                  <FileText className="h-5 w-5 text-green-600" />
-                </div>
-                <span>Free to manage item</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="rounded-full bg-green-100/50 p-2">
-                  <Search className="h-5 w-5 text-green-600" />
-                </div>
-                <span>Easy Find Easy Use</span>
-              </div>
+            
+            <h2 className="text-4xl font-bold leading-tight">
+              Experience the Magic <br />
+              of African Wilderness
+            </h2>
+            
+            <div className="grid sm:grid-cols-2 gap-6">
+              {features.map((feature, index) => (
+                <FeatureCard key={index} {...feature} />
+              ))}
             </div>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/blogs">
-                <Button 
-                  variant="outline" 
-                  className="rounded-md border-green-600 text-black bg-gray-100 hover:bg-gray-200"
-                >
-                  Read More
+
+            <div className="flex gap-4">
+              <Link href="/packages">
+                <Button className="bg-amber-600 hover:bg-amber-700">
+                  Explore Packages
                 </Button>
               </Link>
-              <Link href="/destinations">
-                <Button 
-                  className="rounded-md bg-green-600 hover:bg-green-700"
-                >
-                  Book Now
+              <Link href="/contact">
+                <Button variant="outline" className="border-amber-600 text-amber-600 hover:bg-amber-50">
+                  Contact Us
                 </Button>
               </Link>
             </div>
           </div>
-          <div className="relative">
-            <Image
-              src="/images/travel_detsinations.jpg"
-              alt="Venice"
-              width={600}
-              height={400}
-              className="rounded-2xl object-cover w-full h-[400px]"
-            />
-            <div className="absolute top-4 right-4">
-              <UserAvatars />
+
+          <div className="lg:w-1/2 relative">
+            <div className="relative h-[600px] w-full">
+              <Image
+                src="/images/safari.svg"
+                alt="African Safari"
+                className="rounded-2xl object-cover"
+                fill
+                priority
+              />
+              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-sm p-6 rounded-xl">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-lg font-semibold">Serengeti Safari</p>
+                    <p className="text-amber-600 font-sans">Starting from kes. 35000/-</p>
+                  </div>
+                  <Link href="destination/serengeti">
+                    <Button size="sm" className="bg-amber-600 hover:bg-amber-700">
+                      Book Now
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
-

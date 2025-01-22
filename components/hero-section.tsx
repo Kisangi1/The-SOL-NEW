@@ -91,7 +91,7 @@ export default function HeroCarousel() {
   const nextItem = carouselItems[(currentSlide + 1) % carouselItems.length]
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-emerald-950">
+    <section className="relative w-full h-screen overflow-hidden bg-gray-900">
       <div className="absolute inset-0">
         {/* Previous/Current Background */}
         <motion.div
@@ -147,7 +147,7 @@ export default function HeroCarousel() {
           <div>
             <Link 
               href={currentItem.link}
-              className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg flex items-center transition duration-300 group/link"
+              className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg flex items-center transition duration-300 group/link"
             >
               View Destinations
               <MoveUpRight className="ml-2 h-5 w-5 transition group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
