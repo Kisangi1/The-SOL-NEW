@@ -1,244 +1,262 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Leaf, Globe, TreePine, Users } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import {
+  Users,
+  Award,
+  MapPin,
+  Star,
+  Sunset,
+  Mountain,
+  Camera
+} from "lucide-react";
+
+const fadeIn = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
+};
+
+const staggerChildren = {
+  animate: {
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
 
 export default function AboutPage() {
+  const experiences = [
+    {
+      icon: Sunset,
+      title: "Safari Adventures",
+      description: "Experience the magic of African wildlife in their natural habitat"
+    },
+    {
+      icon: Mountain,
+      title: "Cultural Immersion",
+      description: "Connect with local communities and ancient traditions"
+    },
+    {
+      icon: Camera,
+      title: "Photo Expeditions",
+      description: "Capture breathtaking moments in Africa's most scenic locations"
+    },
+    {
+      icon: Star,
+      title: "Luxury Stays",
+      description: "Rest in comfort at carefully selected premium accommodations"
+    }
+  ];
+
   const teamMembers = [
     {
-      name: "Amani Ochieng",
-      role: "Founder & CEO",
-      img: "1539701938214-0d9736e1c16b",
+      name: "Michael Kisangi",
+      role: "Founder & Lead Guide",
+      image: "/images/profile1.jpg",
+      quote: "Bringing Africa's magic to life through unforgettable journeys."
     },
     {
-      name: "Zuri Kimani",
-      role: "Head of Conservation",
-      img: "1573497019940-1c28c88b4f3e",
+      name: "Faith Aboki",
+      role: "Travel Coordinator",
+      image: "/images/profile1.jpg",
+      quote: "Creating seamless experiences across the African continent."
     },
     {
-      name: "Jabari Muthomi",
-      role: "Community Liaison",
-      img: "1560250097-0b93528c311a",
-    },
+      name: "Jennifer Brubaker",
+      role: "Client Relations",
+      image: "/images/profile1.jpg",
+      quote: "Every safari tells a unique story of Africa's wilderness."
+    }
   ];
 
-  const coreValues = [
-    {
-      icon: TreePine,
-      title: "Environmental Conservation",
-      description:
-        "Leading efforts in helping Africa transition to a green economy through eco-friendly travel solutions.",
-    },
-    {
-      icon: Users,
-      title: "Memorable Experiences",
-      description:
-        "Creating unforgettable adventures while maintaining focus on environmental conservation.",
-    },
-  ];
-  
   return (
-    <div className="bg-gradient-to-b from-[#f6efe5] to-white min-h-screen">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative z-10 overflow-hidden bg-black text-white">
-        <div className="h-40">
-          <Image
-            src="/images/packages.jpeg"
-            alt="image"
-            width={1920}
-            height={160}
-            className="z-1 absolute left-0 top-0 h-full w-full object-cover"
-            priority
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg text-center px-4 capitalize">
-              About Us
-            </h1>
-          </div>
-        </div>
-        <div
-          className="relative z-20 h-32 w-full -scale-y-[1] bg-contain bg-repeat-x"
-          style={{
-            backgroundImage: "url('/images/banner_style.png')",
-            filter:
-              "invert(92%) sepia(2%) saturate(1017%) hue-rotate(342deg) brightness(106%) contrast(93%)",
-          }}
+      <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden">
+        <Image
+          src="/images/hero_packages.jpg"
+          alt="African landscape"
+          fill
+          className="object-cover"
+          priority
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent">
+          <motion.div 
+            className="container mx-auto px-4 h-full flex flex-col justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <motion.span 
+              className="text-orange-300 text-base sm:text-lg font-medium mb-4"
+              {...fadeIn}
+            >
+              Discover Our Story
+            </motion.span>
+            <motion.h1 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6"
+              {...fadeIn}
+            >
+              The Sol of <span className="text-orange-400">African</span> Travel
+            </motion.h1>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16 lg:py-20">
-        {/* Introduction */}
-        <div className="text-center mb-8 md:mb-12 lg:mb-16">
-          <div className="inline-flex items-center justify-center mb-4 md:mb-6">
-            <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wide text-green-800 bg-green-100 px-2 sm:px-3 py-1 rounded-full">
-              Nurture Nature and Experience the Adventure
-            </span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-            Welcome to <span className="text-green-600">Forestline</span> Tours
-          </h2>
-        </div>
-
-        {/* Mission & Values Grid */}
-        <div className="grid lg:grid-cols-12 gap-8 mb-16">
-          {/* Who We Are Section */}
-          <div className="lg:col-span-7">
-            <div className="bg-green-50 rounded-2xl shadow-lg p-6 md:p-8 h-full">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-3">
-                    <Leaf className="text-green-500" size={24} />
-                    <span className="text-green-600 font-semibold">
-                      Who We Are
-                    </span>
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-gray-800">
-                    Leading Eco-Friendly Tourism
-                  </h3>
-                  <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-                    Founded in Nairobi, Kenya, Forestline is emerging as a leading travels and tours company with an eco-friendly business approach. We are dedicated to revolutionizing your travels and tours experience to foster memorable experiences and environmental conservation simultaneously.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="flex items-center gap-3">
-                      <Globe className="text-green-500" size={20} />
-                      <span className="text-gray-700 text-sm md:text-base">
-                        Eco-Friendly
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <TreePine className="text-green-500" size={20} />
-                      <span className="text-gray-700 text-sm md:text-base">
-                        Conservation
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="relative aspect-square md:aspect-[4/5]">
-                  <Image
-                    src="https://images.unsplash.com/photo-1516426122078-c23e76319801"
-                    alt="Eco-tourism landscape"
-                    fill
-                    className="rounded-2xl object-cover shadow-lg transition-transform hover:scale-[1.02]"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Our Services Section */}
-          <div className="lg:col-span-5 space-y-8">
-            {/* Core Values */}
-            <div className="bg-green-50 rounded-2xl shadow-lg p-6 md:p-8">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
-                  Our Services
-                </h3>
-                <p className="text-gray-600">
-                  Comprehensive eco-friendly travel solutions
-                </p>
-              </div>
-              <div className="space-y-4">
-                <div className="bg-white/50 p-4 rounded-xl">
-                  <ul className="list-disc ml-5 text-gray-700">
-                    <li>Wildlife Safaris</li>
-                    <li>Adventure Tours</li>
-                    <li>Cultural Experiences</li>
-                    <li>Event and Conference Management</li>
-                    <li>Flight Bookings and Travel Planning</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Environmental Impact */}
-            <div className="bg-green-50 rounded-2xl shadow-lg p-6 md:p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
-                Environmental Impact
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Climate change poses a significant threat to Kenya&apos;s tourism industry. Through our eco-friendly approach, we&apos;re committed to supporting Africa&apos;s transition to a green economy while preserving the natural beauty that makes our destinations unique.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Core Values Section */}
-        <div className="mb-16">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Our Core Values
+      {/* Our Story Section */}
+      <motion.section 
+        className="py-16 sm:py-20 bg-gradient-to-b from-orange-50 to-white"
+        variants={staggerChildren}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="max-w-3xl mx-auto text-center mb-16"
+            variants={fadeIn}
+          >
+            <span className="text-orange-600 font-semibold">Our Journey</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 mb-6">
+              Crafting Unforgettable African Adventures
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Dedicated to sustainable tourism and environmental conservation
+            <p className="text-base sm:text-lg text-gray-600">
+              Since our inception, Sol of African Tours has been dedicated to showcasing 
+              the authentic spirit of Africa. We combine luxury with adventure, creating 
+              journeys that touch the heart and soul of this magnificent continent.
             </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            {coreValues.map((value, index) => (
-              <div
+          </motion.div>
+
+          {/* Experience Showcase */}
+          <motion.div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
+            variants={staggerChildren}
+          >
+            {experiences.map((experience, index) => (
+              <motion.div
                 key={index}
-                className="bg-green-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                variants={fadeIn}
               >
-                <div className="flex items-start gap-4">
-                  <value.icon
-                    className="text-green-500 shrink-0"
-                    size={24}
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-orange-100 rounded-full mb-6">
+                  <experience.icon className="w-6 h-6 sm:w-8 sm:h-8 text-orange-600" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">{experience.title}</h3>
+                <p className="text-gray-600 text-sm sm:text-base">{experience.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Team Section */}
+      <motion.section 
+        className="py-16 sm:py-20 bg-white"
+        variants={staggerChildren}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            variants={fadeIn}
+          >
+            <span className="text-orange-600 font-semibold">Our Team</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4">
+              Meet the Explorers
+            </h2>
+          </motion.div>
+
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+            variants={staggerChildren}
+          >
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                className="group relative overflow-hidden rounded-2xl"
+                variants={fadeIn}
+              >
+                <div className="aspect-[3/4] relative">
+                  <Image
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-800 mb-2">
-                      {value.title}
-                    </h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      {value.description}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white transform translate-y-8 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{member.name}</h3>
+                    <p className="text-orange-300 mb-3 sm:mb-4">{member.role}</p>
+                    <p className="text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                      &quot;{member.quote}&quot;
                     </p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
+      </motion.section>
 
-        {/* Team Section */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Meet Our Team
-          </h2>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Passionate Kenyans dedicated to sustainable tourism and conservation
-          </p>
-          <Link href="/careers">
-            <Button
-              variant="default"
-              size="lg"
-              className="bg-green-500 hover:bg-green-600 text-white transform transition hover:scale-105"
-            >
-              Join Our Team
-            </Button>
-          </Link>
-        </div>
+      {/* Why Choose Us */}
+      <motion.section 
+        className="py-16 sm:py-20 bg-orange-50"
+        variants={staggerChildren}
+        initial="initial"
+        whileInView="animate"
+        viewport={{ once: true }}
+      >
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            variants={fadeIn}
+          >
+            <span className="text-orange-600 font-semibold">Why Choose Us</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4">
+              The Sol of African Difference
+            </h2>
+          </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member) => (
-            <div
-              key={member.name}
-              className="relative aspect-[4/5] rounded-3xl overflow-hidden group"
-            >
-              <Image
-                src={`https://images.unsplash.com/photo-${member.img}?w=400&h=600&fit=crop`}
-                alt={member.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute bottom-0 left-0 right-0 bg-green-100/95 p-6 backdrop-blur-sm transform transition-transform duration-300 group-hover:translate-y-0">
-                <h3 className="text-xl font-bold mb-2">{member.name}</h3>
-                <p className="text-gray-700">{member.role}</p>
-              </div>
-            </div>
-          ))}
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+            variants={staggerChildren}
+          >
+            {[
+              {
+                icon: MapPin,
+                title: "Local Expertise",
+                description: "Deep knowledge of Africa's hidden gems and authentic experiences"
+              },
+              {
+                icon: Award,
+                title: "Premium Service",
+                description: "Luxury accommodations and personalized attention to detail"
+              },
+              {
+                icon: Users,
+                title: "Cultural Connection",
+                description: "Meaningful interactions with local communities and traditions"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                variants={fadeIn}
+              >
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-orange-100 rounded-full mb-6">
+                  <feature.icon className="w-6 h-6 text-orange-600" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                <p className="text-sm sm:text-base text-gray-600">{feature.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </div>
+      </motion.section>
     </div>
   );
 }

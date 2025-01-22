@@ -67,4 +67,4 @@ For any inquiries, please contact us at info@ecoventures.com
 
 ---
 
-Designed with 💚 by [Olive Bishop](https://olivebishop.vercel.app)
+Designed with 💚 by [Olive Bishop](https://olivebishop.vercel.app)# the-sol-revamp

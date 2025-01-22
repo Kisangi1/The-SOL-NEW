@@ -1,5 +1,4 @@
-"use client";
-
+'use client'
 import React, { useState, FormEvent } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -80,112 +79,106 @@ export default function ContactSection() {
   const socialLinks = [
     {
       icon: Facebook,
-      href: "https://www.facebook.com/forestlinetours",
+      href: "https://www.facebook.com/solofafricantours",
       label: "Facebook",
     },
     {
       icon: Instagram,
-      href: "https://www.instagram.com/forestlinetours",
+      href: "https://www.instagram.com/solofafricantours",
       label: "Instagram",
     },
     {
       icon: Twitter,
-      href: "https://www.twitter.com/forestlinetours",
+      href: "https://www.twitter.com/solofafrica",
       label: "Twitter",
     },
   ];
 
   return (
-    <section className="bg-gradient-to-b from-[#f6efe5] to-white">
-      {/* Banner Section */}
-      <div className="relative z-10 overflow-hidden bg-black text-white">
-        <div className="h-40">
+    <section className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+      {/* Enhanced Banner Section */}
+      <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] w-full overflow-hidden">
         <Image
-        src="/images/hero_packages.jpg"
-        alt="image"
-        width={1920}
-        height={160}
-        className="z-1 absolute left-0 top-0 h-full w-full object-cover"
-        priority
-      />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg text-center px-4">
-              Contact Us
-            </h1>
+          src="/images/hero_packages.jpg"
+          alt="African landscape"
+          width={1920}
+          height={1080}
+          className="absolute inset-0 w-full h-full object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent">
+          <div className="container mx-auto h-full px-4">
+            <div className="flex flex-col justify-center h-full max-w-4xl">
+              <span className="text-orange-300 text-sm md:text-base lg:text-lg font-medium mb-4">
+                Your Gateway to African Adventures
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+                Contact Us
+              </h1>
+              <p className="text-lg md:text-xl lg:text-2xl text-gray-200 max-w-2xl">
+                Let us help you plan your unforgettable African journey
+              </p>
+            </div>
           </div>
         </div>
-        <div
-          className="relative z-20 h-32 w-full -scale-y-[1] bg-contain bg-repeat-x"
-          style={{
-            backgroundImage: "url('/images/banner_style.png')",
-            filter:
-              "invert(92%) sepia(2%) saturate(1017%) hue-rotate(342deg) brightness(106%) contrast(93%)",
-          }}
-        />
       </div>
 
       {/* Contact Content */}
       <div className="container mx-auto px-4 py-16">
-      <div className="text-center mb-8 md:mb-12 lg:mb-16">
-      <div className="inline-flex items-center justify-center mb-4 md:mb-6">
-        <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wide text-green-800 bg-green-100 px-2 sm:px-3 py-1 rounded-full">
-       Do you have any questions?
-        </span>
-      </div>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-      Chat <span className="text-green-600">With</span>{" "}
-        US
-      </h2>
-    </div>
+        <div className="text-center mb-8 md:mb-12 lg:mb-16">
+          <div className="inline-flex items-center justify-center mb-4 md:mb-6">
+            <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wide text-orange-800 bg-orange-100 px-4 py-2 rounded-full">
+              Ready to Experience Africa?
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
+            Begin Your <span className="text-orange-600">African</span> Journey
+          </h2>
+        </div>
 
-        <div className=" overflow-hidden grid md:grid-cols-2 gap-8 md:gap-12 p-6 md:p-12 lg:p-16">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-8 p-6 md:p-8 lg:p-12 bg-white rounded-2xl shadow-lg">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-emerald-900 mb-6">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-orange-900 mb-6">
                 Get In Touch
               </h2>
-              <p className="text-emerald-700 mb-8 text-base md:text-lg">
-                We&apos;re passionate about sustainable travel. Whether you have
-                a question, want to plan a trip, or simply want to learn more
-                about eco-tourism, we&apos;re here to help.
+              <p className="text-orange-700 mb-8 text-base md:text-lg">
+                Let us help you discover the soul of Africa. From serene safaris to
+                cultural encounters, we&apos;re here to craft your perfect African adventure.
               </p>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-6 font-sans">
               {[
                 {
                   icon: Mail,
                   title: "Email",
-                  content: "ecotour@gmail.com",
-                  color: "emerald",
+                  content: "the.sol.of.african@gmail.com",
                 },
                 {
                   icon: Phone,
                   title: "Phone",
-                  content: "+2547000000",
-                  color: "emerald",
+                  content: "+254768453819",
                 },
                 {
                   icon: MapPin,
                   title: "Location",
                   content: "Nairobi, Kenya",
-                  color: "emerald",
                 },
                 {
                   icon: Clock,
                   title: "Hours",
-                  content: "Mon - Sat: 9AM - 6PM",
-                  color: "emerald",
+                  content: "Mon - Sun: 9AM - 6PM",
                 },
-              ].map(({ icon: Icon, title, content, color }, index) => (
-                <div key={index} className="flex items-center space-x-4">
-                  <div className={`p-3 bg-${color}-200 rounded-full`}>
-                    <Icon className={`w-6 h-6 text-${color}-700`} />
+              ].map(({ icon: Icon, title, content }, index) => (
+                <div key={index} className="flex items-center space-x-4 group hover:bg-orange-50 p-4 rounded-lg transition-colors">
+                  <div className="p-3 bg-orange-200 rounded-full group-hover:bg-orange-300 transition-colors">
+                    <Icon className="w-6 h-6 text-orange-700" />
                   </div>
                   <div>
-                    <p className={`text-sm text-${color}-600`}>{title}</p>
-                    <p className={`text-lg font-semibold text-${color}-900`}>
+                    <p className="text-sm text-orange-600">{title}</p>
+                    <p className="text-lg font-semibold text-orange-900">
                       {content}
                     </p>
                   </div>
@@ -193,9 +186,9 @@ export default function ContactSection() {
               ))}
             </div>
 
-            <div className="pt-6 border-t border-emerald-200">
-              <h4 className="text-base font-semibold text-emerald-900 mb-4">
-                Follow Us
+            <div className="pt-6 border-t border-orange-200">
+              <h4 className="text-base font-semibold text-orange-900 mb-4">
+                Follow Our Journey
               </h4>
               <div className="flex space-x-4">
                 {socialLinks.map(({ icon: Icon, href, label }, index) => (
@@ -204,10 +197,10 @@ export default function ContactSection() {
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-emerald-200 rounded-full hover:bg-emerald-300 transition-colors group"
+                    className="p-3 bg-orange-200 rounded-full hover:bg-orange-300 transition-colors group"
                     aria-label={`${label} link`}
                   >
-                    <Icon className="w-6 h-6 text-emerald-700 group-hover:text-emerald-900 transition-colors" />
+                    <Icon className="w-6 h-6 text-orange-700 group-hover:text-orange-900 transition-colors" />
                   </a>
                 ))}
               </div>
@@ -215,13 +208,13 @@ export default function ContactSection() {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-background rounded-2xl p-6 md:p-8 lg:p-12 shadow-lg">
-            <h4 className="text-2xl md:text-3xl font-bold text-emerald-900 mb-8 text-center">
-              Plan Your Eco-Adventure
+          <div className="bg-white rounded-2xl p-6 md:p-8 lg:p-12 shadow-lg font-sans">
+            <h4 className="text-2xl md:text-3xl font-bold text-orange-900 mb-8 text-center">
+              Plan Your African Adventure
             </h4>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <Label
                     htmlFor="fullName"
@@ -292,8 +285,8 @@ export default function ContactSection() {
                 </Label>
                 <Textarea
                   id="message"
-                  className="w-full h-32"
-                  placeholder="Tell us about your dream eco-tour..."
+                  className="w-full h-32 resize-y min-h-[8rem]"
+                  placeholder="Tell us about your dream African adventure..."
                   value={formState.message}
                   onChange={(e) =>
                     setFormState({ ...formState, message: e.target.value })
@@ -304,7 +297,7 @@ export default function ContactSection() {
 
               <Button
                 type="submit"
-                className="w-full py-3 bg-emerald-700 hover:bg-emerald-800 text-white text-base transition-colors"
+                className="w-full py-3 bg-orange-700 hover:bg-orange-800 text-white text-base transition-colors"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Sending..." : "Start Your Journey"}

@@ -1,16 +1,14 @@
-import { NextResponse } from 'next/server'
-import { auth, currentUser } from '@clerk/nextjs/server'
-import { PrismaClient } from '@prisma/client'
+import { NextResponse } from 'next/server';
+import { auth, currentUser } from '@clerk/nextjs/server';
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 // Public GET endpoint - /api/blogs
 export async function GET() {
   try {
     const blogs = await prisma.blog.findMany({
-      orderBy: {
-        createdAt: 'desc'
-      },
+      orderBy: { createdAt: 'desc' },
       select: {
         id: true,
         title: true,
@@ -21,35 +19,35 @@ export async function GET() {
         updatedAt: true,
         authorName: true,
       },
-    })
-    return NextResponse.json(blogs)
+    });
+    return NextResponse.json(blogs);
   } catch (error) {
-    console.error('no blogs available:', error)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    console.error('Error fetching blogs:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
 // Protected POST endpoint - /api/blogs
 export async function POST(request: Request) {
   try {
-    const { userId } = await auth()
-    
+    const { userId } = await auth();
+
     if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
-    
-    const user = await currentUser()
-    
+
+    const user = await currentUser();
+
     if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 })
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
-    
-    const { title, content, tags, image } = await request.json()
-    
+
+    const { title, content, tags, image } = await request.json();
+
     if (!title || !content) {
-      return NextResponse.json({ error: 'Title and content are required' }, { status: 400 })
+      return NextResponse.json({ error: 'Title and content are required' }, { status: 400 });
     }
-    
+
     const newBlog = await prisma.blog.create({
       data: {
         title,
@@ -57,13 +55,13 @@ export async function POST(request: Request) {
         tags,
         imageData: image,
         authorId: userId,
-        authorName: `${user.firstName} ${user.lastName}`.trim(),
+        authorName: `${user.firstName || ''} ${user.lastName || ''}`.trim(),
       },
-    })
-    
-    return NextResponse.json(newBlog, { status: 201 })
+    });
+
+    return NextResponse.json(newBlog, { status: 201 });
   } catch (error) {
-    console.error('Error creating blog:', error)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    console.error('Error creating blog:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

@@ -8,4 +8,6 @@ export interface BlogPost {
   updatedAt: string;
   authorName: string;
   authorId?: string;
+  category?: string;
+  excerpt?: string; 
 }
