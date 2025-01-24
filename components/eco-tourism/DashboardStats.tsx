@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookText, Users } from 'lucide-react';
@@ -37,18 +36,11 @@ export default function DashboardStats() {
           bookingsResponse.json(),
         ]);
 
-        console.log('Blogs data:', blogsData);
-        console.log('Bookings data:', bookingsData);
-
-        if (blogsData.error) {
-          throw new Error(blogsData.error);
-        }
-
         setStats({
           totalBlogs: Array.isArray(blogsData) ? blogsData.length : (blogsData.total || 0),
-          totalBookings: bookingsData.total || 0,
+          totalBookings: bookingsData.length,
           blogsTrend: blogsData.trend || 0,
-          bookingsTrend: bookingsData.trend || 0,
+          bookingsTrend: 0, // You may want to calculate this based on bookings data
         });
         setError(null);
       } catch (error) {

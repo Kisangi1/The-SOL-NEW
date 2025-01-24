@@ -1,76 +1,54 @@
-import { auth } from '@clerk/nextjs/server'
-import { NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import { NextResponse } from "next/server"
+import { auth, currentUser } from "@clerk/nextjs/server"
+import { getDestinations, createDestination } from "@/lib/db"
 
-const prisma = new PrismaClient()
-
-export async function GET(request: Request) {
-  // Remove authentication for GET request to allow public access to destinations
-  const { searchParams } = new URL(request.url)
-  const country = searchParams.get('country')
-
+// Public GET endpoint - /api/destinations
+export async function GET() {
   try {
-    let destinations
-    if (country) {
-      destinations = await prisma.destination.findMany({
-        where: {
-          country: {
-            equals: country,
-            mode: 'insensitive'
-          }
-        }
-      })
-    } else {
-      destinations = await prisma.destination.findMany()
-    }
+    const destinations = await getDestinations()
     return NextResponse.json(destinations)
   } catch (error) {
-    console.error('Error fetching destinations:', error)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    console.error("Error fetching destinations:", error)
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
   }
 }
 
+// Protected POST endpoint - /api/destinations
 export async function POST(request: Request) {
   try {
     const { userId } = await auth()
-    
+
     if (!userId) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
-    
-    const { 
-      name, 
-      country, 
-      city, 
-      amount, 
-      tags, 
-      imageData, 
-      description, 
-      daysNights, 
-      tourType 
-    } = await request.json()
-    
-    if (!name || !country || !city || !amount || !description || !daysNights || !tourType) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+
+    const user = await currentUser()
+
+    if (!user) {
+      return NextResponse.json({ error: "User not found" }, { status: 404 })
     }
-    
-    const destination = await prisma.destination.create({
-      data: {
-        name,
-        country,
-        city,
-        amount: parseFloat(amount),
-        tags,
-        imageData,
-        description,
-        daysNights: parseInt(daysNights),
-        tourType,
-      },
+
+    const { name, description, imageData, locations, inclusive, exclusive, amount, whatToCarry } = await request.json()
+
+    if (!name || !description || !amount) {
+      return NextResponse.json({ error: "Name, description, and amount are required" }, { status: 400 })
+    }
+
+    const newDestination = await createDestination({
+      name,
+      description,
+      imageData,
+      locations,
+      inclusive,
+      exclusive,
+      amount,
+      whatToCarry,
     })
-    
-    return NextResponse.json(destination)
+
+    return NextResponse.json(newDestination, { status: 201 })
   } catch (error) {
-    console.error('Error creating destination:', error)
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+    console.error("Error creating destination:", error)
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
   }
 }
+

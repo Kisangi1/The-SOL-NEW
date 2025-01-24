@@ -122,10 +122,19 @@ export default function AboutPage() {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-4 mb-6">
               Crafting Unforgettable African Adventures
             </h2>
-            <p className="text-base sm:text-lg text-gray-600">
+            <p className="text-base sm:text-lg text-gray-600 mb-6">
               Since our inception, Sol of African Tours has been dedicated to showcasing 
               the authentic spirit of Africa. We combine luxury with adventure, creating 
               journeys that touch the heart and soul of this magnificent continent.
+            </p>
+            <p className="text-base sm:text-lg text-gray-600">
+              We started our journey with a mission to showcase the natural beauty and 
+              diverse cultures of Africa. With years of experience in the travel industry, 
+              we have curated some of the most breathtaking safari experiences for our clients. 
+              From the vast plains of the Serengeti to the coastal paradise of Mombasa, our 
+              safaris are designed to provide a unique and immersive experience. Our team of 
+              expert guides is passionate about wildlife and committed to ensuring you have 
+              the adventure of a lifetime.
             </p>
           </motion.div>
 

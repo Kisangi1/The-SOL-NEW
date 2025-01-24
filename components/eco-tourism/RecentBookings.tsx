@@ -4,29 +4,20 @@ import { useEffect, useState, useCallback } from 'react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Users, RefreshCw } from "lucide-react"
+import { RefreshCw } from "lucide-react"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Button } from "@/components/ui/button"
 
 interface Booking {
   id: string
-  firstname: string
-  lastname: string
+  name: string
   email: string
-  phone: string
+  startDate: string
+  endDate: string
   status: 'PENDING' | 'COMPLETED' | 'CANCELLED'
-  bookingDate: string | null
-  numberOfGuests: number
-  specialRequests: string
-  destinationName: string
-  price: string
-}
-
-interface BookingsResponse {
-  bookings: Booking[]
-  total: number
-  page: number
-  totalPages: number
+  package?: { name: string }
+  destination?: { name: string }
+  message?: string
 }
 
 export default function RecentBookings() {
@@ -48,12 +39,12 @@ export default function RecentBookings() {
           return
         }
       }
-      const data: BookingsResponse = await response.json()
+      const data = await response.json()
       // Take only the 4 most recent bookings
-      const recentBookings = data.bookings
-        .sort((a, b) => {
-          const dateA = a.bookingDate ? new Date(a.bookingDate).getTime() : 0
-          const dateB = b.bookingDate ? new Date(b.bookingDate).getTime() : 0
+      const recentBookings = data
+        .sort((a: Booking, b: Booking) => {
+          const dateA = new Date(a.startDate).getTime()
+          const dateB = new Date(b.startDate).getTime()
           return dateB - dateA
         })
         .slice(0, 4)
@@ -69,8 +60,7 @@ export default function RecentBookings() {
     fetchBookings()
   }, [fetchBookings])
 
-  const formatDate = (dateString: string | null) => {
-    if (!dateString) return 'N/A'
+  const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',
@@ -103,18 +93,14 @@ export default function RecentBookings() {
       <TableRow key={booking.id} className="hover:bg-muted/50">
         <TableCell>
           <div className="flex flex-col space-y-1">
-            <span className="font-medium text-sm">{`${booking.firstname} ${booking.lastname}`}</span>
-            <div className="flex items-center text-xs text-muted-foreground">
-              <Users className="mr-1 h-3 w-3" />
-              <span>{booking.numberOfGuests}</span>
-            </div>
+            <span className="font-medium text-sm">{booking.name}</span>
           </div>
         </TableCell>
         <TableCell className="text-sm">
-          {formatDate(booking.bookingDate)}
+          {formatDate(booking.startDate)}
         </TableCell>
         <TableCell className="hidden sm:table-cell text-sm">
-          {booking.destinationName}
+          {booking.package?.name || booking.destination?.name || 'N/A'}
         </TableCell>
         <TableCell>
           <Badge

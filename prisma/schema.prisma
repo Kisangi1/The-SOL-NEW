@@ -1,3 +1,6 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -28,66 +31,53 @@ model Blog {
   updatedAt  DateTime @updatedAt
   authorName String
   imageData  String?
-  category  String?
+  category   String?
 }
 
-model Booking {
-  id              String    @id @default(cuid())
-  firstname       String
-  lastname        String
-  email           String
-  phone           String
-  country         String?
-  status          Status    @default(PENDING)
-  bookingDate     DateTime?
-  numberOfGuests  Int       @default(1)
-  specialRequests String?
-  destinationName String?
-  price           Decimal?  @db.Decimal(10, 2)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-}
-
-model PackageBooking {
-  id              String    @id @default(cuid())
-  firstname       String
-  lastname        String
-  email           String
-  phone           String
-  country         String?
-  status          Status    @default(PENDING)
-  bookingDate     DateTime?
-  numberOfGuests  Int       @default(1)
-  specialRequests String?
-  packageId       String
-  price           Decimal   @db.Decimal(10, 2)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  package         Package   @relation(fields: [packageId], references: [id])
+model Destination {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  imageData   String?
+  locations   String[]
+  inclusive   String[]
+  exclusive   String[]
+  amount      Float
+  whatToCarry String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  bookings    Booking[]
 }
 
 model Package {
-  id          String           @id @default(cuid())
-  name        String
-  location    String
-  imageData   String?
-  duration    String
-  groupSize   String
-  price       Decimal          @db.Decimal(10, 2)
-  description String
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
-  authorId    String
-  authorName  String
-  included    Included[]
-  bookings    PackageBooking[]
+  id            String   @id @default(cuid())
+  name          String
+  description   String
+  imageData     String?
+  amount        Float
+  numberOfDays  Int
+  dayOrNight    String
+  type          String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  bookings      Booking[]
 }
 
-model Included {
-  id        String  @id @default(cuid())
-  item      String
-  packageId String
-  package   Package @relation(fields: [packageId], references: [id])
+
+model Booking {
+  id            String   @id @default(cuid())
+  name          String
+  email         String
+  startDate     DateTime
+  endDate       DateTime
+  message       String?
+  status        Status   @default(PENDING)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  destination   Destination? @relation(fields: [destinationId], references: [id])
+  destinationId String?
+  package       Package?    @relation(fields: [packageId], references: [id])
+  packageId     String?
 }
 
 model KeepAlive {
@@ -96,28 +86,9 @@ model KeepAlive {
   random String? @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 }
 
-model Destination {
-  id          String   @id @default(cuid())
-  name        String
-  country     String
-  city        String
-  amount      Decimal  @db.Decimal(10, 2)
-  tags        String[]
-  imageData   String?
-  description String
-  daysNights  Int
-  tourType    TourType
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-enum TourType {
-  DAYS
-  NIGHTS
-}
-
 enum Role {
   ADMIN
+  USER
 }
 
 enum Status {
@@ -126,3 +97,14 @@ enum Status {
   REJECTED
   COMPLETED
 }
+
+enum PackageType {
+  VALENTINE
+  CHRISTMAS
+  EASTER
+  EID
+  MADARAKA
+  WEEKEND
+  HONEYMOON
+}
+

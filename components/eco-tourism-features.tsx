@@ -39,7 +39,7 @@ export default function SolAfricanFeatures() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 text-center">
           <h2 className="text-5xl font-bold mb-6">
-            <span className="text-amber-600">Sol</span> of Africa
+            <span className="text-amber-600">Sol</span> of African
           </h2>
           <div className="w-24 h-1 bg-amber-600 mx-auto mb-6" />
           <p className="text-gray-600 max-w-2xl mx-auto">
