@@ -2,6 +2,24 @@ import Image from "next/image"
 import { notFound } from "next/navigation"
 import { BookingForm } from "@/components/other/BookingForm"
 import { getDestinationBySlug } from "@/lib/db"
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Destinations | Sol Of African",
+  description: "Explore breathtaking African destinations. From serene landscapes to vibrant cultural experiences, discover the diverse and incredible locations we offer.",
+  keywords: [
+    "African destinations",
+    "travel locations",
+    "safari destinations",
+    "African travel",
+    "adventure destinations"
+  ],
+  openGraph: {
+    title: "Sol Of African - Amazing Destinations",
+    description: "Journey through Africa's most stunning and unique locations.",
+    type: "website",
+    images: ["/images/destinations_hero.jpg"]
+  }
+};
 
 async function getDestination(slug: string) {
   const destination = await getDestinationBySlug(slug)

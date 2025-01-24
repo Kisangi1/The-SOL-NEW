@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Package } from "@prisma/client";
 
@@ -23,7 +23,7 @@ export default function PackagesPage({ initialPackages }: PackagesPageProps) {
   );
 
   return (
-    <div>
+    <div className="bg-gray-50">
       {/* Hero Banner */}
       <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] w-full overflow-hidden">
         <Image
@@ -52,37 +52,44 @@ export default function PackagesPage({ initialPackages }: PackagesPageProps) {
       </div>
 
       {/* Packages Section */}
-      <div className="container mx-auto py-8">
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 text-center">
-          <span className="text-amber-600 font-sans">Explore </span>Destinations
+      <div className="container mx-auto py-12 px-4">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center">
+          <span className="text-amber-600">Explore </span>Destinations
         </h2>
-        <div className="w-16 sm:w-20 md:w-24 h-1 bg-amber-600 mx-auto mb-4 sm:mb-5 md:mb-6" />
+        <div className="w-16 md:w-24 h-1 bg-amber-600 mx-auto mb-10" />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {paginatedPackages.map((pkg) => (
-            <Card key={pkg.id} className="flex flex-col">
-              <CardHeader>
-                <CardTitle>{pkg.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                {pkg.imageData && (
+            <Card 
+              key={pkg.id} 
+              className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 border-0 rounded-xl overflow-hidden"
+            >
+              {pkg.imageData && (
+                <div className="relative w-full h-56">
                   <Image
                     src={pkg.imageData || "/placeholder.svg"}
                     alt={pkg.name}
-                    width={400}
-                    height={300}
-                    className="w-full h-48 object-cover rounded-md mb-4"
+                    fill
+                    className="object-cover"
                   />
-                )}
-                <p className="text-lg font-bold mb-2">${pkg.amount}</p>
-                <p className="text-sm text-gray-500">
-                  {pkg.numberOfDays} {pkg.dayOrNight}s
-                </p>
-                <p className="text-sm font-medium mt-2">{pkg.type}</p>
+                  <div className="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    {pkg.type} Package
+                  </div>
+                </div>
+              )}
+              <CardContent className="p-6 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{pkg.name}</h3>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xl font-bold text-amber-600">
+                    KES {pkg.amount.toLocaleString()}/-
+                  </span>
+                </div>
               </CardContent>
-              <CardFooter>
-                <Link href={`/packages/${pkg.id}`} passHref>
-                  <Button className="w-full">View Details</Button>
+              <CardFooter className="p-6 pt-0">
+                <Link href={`/packages/${pkg.id}`} className="w-full" passHref>
+                  <Button className="w-full bg-amber-600 hover:bg-amber-700 transition-colors">
+                    View Details
+                  </Button>
                 </Link>
               </CardFooter>
             </Card>
@@ -90,8 +97,9 @@ export default function PackagesPage({ initialPackages }: PackagesPageProps) {
         </div>
 
         {/* Pagination Controls */}
-        <div className="flex justify-center items-center mt-8 space-x-4">
+        <div className="flex justify-center items-center mt-10 space-x-4">
           <Button 
+            variant="outline"
             onClick={() => setCurrentPage(page => Math.max(1, page - 1))}
             disabled={currentPage === 1}
           >
@@ -101,6 +109,7 @@ export default function PackagesPage({ initialPackages }: PackagesPageProps) {
             Page {currentPage} of {totalPages}
           </span>
           <Button 
+            variant="outline"
             onClick={() => setCurrentPage(page => Math.min(totalPages, page + 1))}
             disabled={currentPage === totalPages}
           >

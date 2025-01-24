@@ -46,8 +46,7 @@ export default function Component({ isOpen, setIsOpen }: SidebarProps) {
       icon: BookOpen, 
       label: "Bookings",
       children: [
-        { href: "/management-portal/view-bookings", label: "View Destination", icon: Package },
-        { href: "/management-portal/view-packages", label: "View Packages", icon: Package },
+        { href: "/management-portal/manage-bookings", label: "Bookings", icon: Package },
       ]
     },
     { 

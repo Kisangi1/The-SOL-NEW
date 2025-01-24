@@ -3,6 +3,25 @@ import Image from "next/image"
 import { getDestinations } from "@/lib/db"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Destinations | Sol Of African",
+  description: "Explore breathtaking African destinations. From serene landscapes to vibrant cultural experiences, discover the diverse and incredible locations we offer.",
+  keywords: [
+    "African destinations",
+    "travel locations",
+    "safari destinations",
+    "African travel",
+    "adventure destinations"
+  ],
+  openGraph: {
+    title: "Sol Of African - Amazing Destinations",
+    description: "Journey through Africa's most stunning and unique locations.",
+    type: "website",
+    images: ["/images/destinations_hero.jpg"]
+  }
+};
 
 async function getAllDestinations() {
   return await getDestinations()
