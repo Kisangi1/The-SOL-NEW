@@ -40,7 +40,7 @@ export function PromoBanner() {
           </h3>
           
           <p className="text-sm text-gray-600 text-center">
-            Get up to 30% off on selected tour packages!
+            Get up to 20% off on selected tour packages and destinations!
           </p>
           
           <Button

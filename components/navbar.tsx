@@ -91,6 +91,13 @@ const Navbar = () => {
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/gallery" legacyBehavior passHref>
+                    <NavigationMenuLink className="text-white hover:text-orange-500 transition-colors">
+                      Gallery
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
                
                 <NavigationMenuItem>
                   <Link href="/contact" legacyBehavior passHref>
@@ -167,6 +174,9 @@ const MobileNav = ({ onClose }: { onClose: () => void }) => {
           </Link>
           <Link href="/blogs" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
             Blogs
+          </Link>
+          <Link href="/gallery" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
+            Gallery
           </Link>
           <Link href="/contact" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
             Contact Us

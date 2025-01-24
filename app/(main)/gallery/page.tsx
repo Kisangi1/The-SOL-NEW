@@ -1,133 +1,137 @@
-'use client'
 import React from 'react';
 import Image from 'next/image';
-
-const images = [
-  {
-    src: '/images/elephant.jpg',
-    alt: 'Next.js Conference Logo with Golden Gate Bridge',
-    featured: true
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Conference attendee in Next.js t-shirt'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Conference auditorium view'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Conference speakers on stage'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Conference attendees having fun'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Group photo of conference attendees'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Team members networking'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Conference attendees group photo'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Conference networking session'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Team members at conference booth'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Evening conference event'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Conference social gathering'
-  },
-  {
-    src: '/images/forest.jpg',
-    alt: 'Conference social gathering'
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: "Gallery | Sol Of African",
+  description: "Explore breathtaking moments from our African travel experiences. Discover the raw beauty, wildlife, and cultural landscapes that define our extraordinary journeys.",
+  keywords: [
+    "African travel photography",
+    "safari gallery",
+    "wildlife photography",
+    "African landscape images",
+    "travel experience gallery",
+    "African adventure moments"
+  ],
+  openGraph: {
+    title: "Sol Of African: Visual Journey",
+    description: "A visual exploration of Africa's most stunning destinations and unforgettable experiences.",
+    type: "website",
+    images: ["/images/safari-lion.jpg"]
   }
-];
+};
 
-const GalleryPage = () => {
+// Hero Component
+const HeroSection = () => {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#f6efe5]">
-      {/* Hero Section */}
-      <div className="relative z-10 overflow-hidden bg-black text-white">
-        <div className="h-40">
-        <Image
+    <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden">
+      <Image
         src="/images/hero_packages.jpg"
-        alt="image"
-        width={1920}
-        height={160}
-        className="z-1 absolute left-0 top-0 h-full w-full object-cover"
+        alt="African landscape"
+        fill
+        className="object-cover"
         priority
       />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg text-center px-4">
-              Explore   Gallery
-            </h1>
-          </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent">
+        <div className="container mx-auto px-4 h-full flex flex-col justify-center">
+          <span className="text-orange-300 text-base sm:text-lg font-medium mb-4">
+            Discover Our Story
+          </span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+            The Sol of <span className="text-orange-400">African</span> Travel
+          </h1>
         </div>
-        <div
-          className="relative z-20 h-32 w-full -scale-y-[1] bg-contain bg-repeat-x"
-          style={{
-            backgroundImage: "url('/images/banner_style.png')",
-            filter:
-              "invert(92%) sepia(2%) saturate(1017%) hue-rotate(342deg) brightness(106%) contrast(93%)",
-          }}
-        />
       </div>
-
-      {/* Gallery Section */}
-      <section className="w-full py-12 md:py-16">
-        <div className="container mx-auto px-4">
-        <div className="text-center mb-8 md:mb-12 lg:mb-16">
-      <div className="inline-flex items-center justify-center mb-4 md:mb-6">
-        <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wide text-green-800 bg-green-100 px-2 sm:px-3 py-1 rounded-full">
-        Have a taste of our gallery
-        </span>
-      </div>
-      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
-         Nature <span className="text-green-600">Meets</span>{" "}
-         Adventure
-      </h2>
     </div>
-
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className={`relative overflow-hidden rounded-lg ${
-                  index === 0 ? 'md:col-span-2 md:row-span-2' : ''
-                }`}
-              >
-                <div className="aspect-[4/3] relative">
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover transition-transform duration-300 hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
   );
 };
 
-export default GalleryPage;
+// Gallery Images Configuration
+const galleryImages = [
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Majestic lion in savanna',
+    featured: true
+  },
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Elephant herd at sunset'
+  },
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Dramatic African landscape'
+  },
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Traditional tribal dance'
+  },
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Mount Kilimanjaro at dawn'
+  },
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Giraffes in open plains'
+  },
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Vibrant African market scene'
+  },
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Wildebeest river crossing'
+  },
+  {
+    src: '/images/elephant.jpg',
+    alt: 'Sunset over acacia trees'
+  }
+];
+
+// Gallery Grid Component
+const GalleryGrid = () => {
+  return (
+    <section className="w-full bg-gradient-to-b from-[#f4e6d0] to-[#f9f5f0] py-12 md:py-16">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Moments of <span className="text-orange-600">African</span> Wonder
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Every image tells a story of adventure, culture, and the raw beauty of the African continent.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {galleryImages.map((image, index) => (
+            <div
+              key={index}
+              className={`relative overflow-hidden rounded-xl shadow-lg ${
+                image.featured ? 'md:col-span-2' : ''
+              }`}
+            >
+              <div className="aspect-[4/3] relative group">
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Main Gallery Page Component
+export default function GalleryPage() {
+  return (
+    <main className="min-h-screen bg-[#f9f5f0]">
+      <HeroSection />
+      <GalleryGrid />
+    </main>
+  );
+}
