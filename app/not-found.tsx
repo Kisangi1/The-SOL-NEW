@@ -17,7 +17,7 @@ export default function NotFound() {
             />
           </div>
           <div className="w-full lg:w-1/2 text-center lg:text-left lg:pl-12">
-            <div className="font-sans inline-block py-2 px-4 mb-6 text-sm bg-blue-50 text-amber-800 font-medium rounded-full">
+            <div className="font-sans inline-block py-2 px-4 mb-6 text-sm bg-amber-600 text-white font-medium rounded-full">
               404 Error
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">

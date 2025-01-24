@@ -2,13 +2,13 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
     return {
-        name: 'Forestline Tours and Travel : Sustainable Adventures',
-        short_name: 'Eco Tours',
-        description: 'Experience sustainable and eco-friendly tours and safaris with Forestline Tours. Discover wildlife, explore natural landscapes, and contribute to conservation efforts. Book your green adventure today!',
+        name: 'The Sol of African Tours: Authentic African Experiences',
+        short_name: 'Sol African Tours',
+        description: 'Embark on transformative journeys through Africa with The Sol of African Tours. Discover unique destinations, cultural experiences, and unforgettable adventures across the continent.',
         start_url: '/',
         display: 'standalone',
-        background_color: '#F0FFF4',
-        theme_color: '#166534',
+        background_color: '#FFF9E6',
+        theme_color: '#8B4513',
         icons: [
             {
                 src: '/favicon.ico',

@@ -8,16 +8,11 @@ import Script from 'next/script'
 import { OfflineWrapper } from "@/components/offlineWrapper"
 import CookieConsentBanner from '@/components/CookieConsentBanner';
 
-
-
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-
-
 
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
@@ -26,17 +21,20 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.forestlinetours.com"),
+  metadataBase: new URL("https://www.thesolofafrican.com"),
   title: {
-    default: 'Forestline Tours',
-    template: "%s | Forestline Tours",
+    default: 'The Sol of African Tours',
+    template: "%s | Tours & Travel",
   },
-  description: 'The best tour agency  that connects tourist with magical destinations',
-  keywords: ['African Safaris', 'Tours in Nairobi', 'Kenya Safaris', 'Best African Tour Company', 'Big Five Safaris', 'Nairobi Tours and Safaris', 'Top Safari Company in Africa', 'Wildlife Tours in Kenya', 'Luxury Safaris', 
-    'Adventure Tours Africa', 'Forestline Tours, Kenya', 'Forestline Tours, Nairobi', 'Forestline Tours, Africa', 'Forestline Tours, Best Tour Company in Africa', 'Forestline Tours, Best Tour Company in Kenya', 'Forestline Tours, Best Tour Company in Nairobi,Forestline Packages, Diani Travel Packages, Mombasa Travel Packages, Nairobi Travel Packages, Kenya Travel Packages, Africa Travel Packages, Best Travel Packages in Africa, Best Travel Packages in Kenya, Best Travel Packages in Nairobi, Best Travel Packages in Diani, Best Travel Packages in Mombasa ,Japan Tour Travel',],
-    verification: {
-      google: 'google-site-verification: googlec1b1726e9f555276.html',
-    },
+  description: 'The premier tour agency connecting travelers with magical African destinations',
+  keywords: [
+    'African Safaris', 'Tours in Africa', 'Kenya Safaris', 'Best African Tour Company', 
+    'Big Five Safaris', 'Wildlife Tours', 'Luxury Safaris', 'Adventure Tours Africa', 
+    'The Sol of African Tours', 'Africa Travel Packages', 'Kenya Travel Packages'
+  ],
+  verification: {
+    google: 'google-site-verification: googlec1b1726e9f555276.html',
+  },
   alternates: {
     canonical: '/',
     languages: {
@@ -46,31 +44,28 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@forestlinetours', // Your Twitter handle
-    creator: '@forestlinetours', // Your Twitter handle
+    site: '@sol_of_african',
+    creator: '@sol_of_african',
     images: {
-      url: 'https://www.forestlinetours.com/opengraph-image',
-      alt: 'Forestline Tours',
+      url: 'https://www.thesolofafrican.com/opengraph-image',
+      alt: 'The Sol of African Tours',
     },
-    
   },
-  //opengraph for sharing on social media
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://www.forestlinetours.com',
-    siteName: 'Forestline Tours',
-    title: 'Forestline Tours',
-    description: 'Tour agency that connects tourist with magical destinations',
+    url: 'https://www.thesolofafrican.com',
+    siteName: 'The Sol of African Tours',
+    title: 'The Sol of African Tours',
+    description: 'Tour agency connecting travelers with magical African destinations',
     images: [{
-      url: 'https://www.forestlinetours.com/opengraph-image',
+      url: 'https://www.thesolofafrican.com/opengraph-image',
       width: 1200,
       height: 630,
-      alt: 'Forestline Tours',
+      alt: 'The Sol of African Tours',
     }],
   },
 }
-
 
 export default function RootLayout({
   children,
@@ -78,31 +73,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AuthWrapper>
-      <html lang="en" suppressHydrationWarning>
-        <head>
-         <Script id="schema-org-markup-website" type="application/ld+json">
-          {`
-            {
-              "@context" : "https://schema.org",
-              "@type" : "WebSite",
-              "name" : "Forestline Tours",
-              "url" : "https://www.forestlinetours.com"
-            }`}
-        </Script>
-        </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <OfflineWrapper>
-        {children}
-        <Toaster />
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
+        <AuthWrapper>
+          <OfflineWrapper>
+            {children}
+            <Toaster />
+            <CookieConsentBanner />
+          </OfflineWrapper>
+        </AuthWrapper>
         <Analytics />
-        </OfflineWrapper>
-        <CookieConsentBanner />
+        <Script 
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
+          `}
+        </Script>
       </body>
-      </html>
-    </AuthWrapper>
+    </html>
   );
 }
-
-
-

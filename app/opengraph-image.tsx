@@ -7,7 +7,7 @@ const roboto = Roboto({
 })
 
 export const runtime = 'edge'
-export const alt = 'Forestline Tours & Travel'
+export const alt = 'The Sol of African Tours'
 export const size = {
   width: 1200,
   height: 630,
@@ -46,7 +46,7 @@ export default async function Image() {
               color: '#000',
             }}
           >
-            Forestline Tours & Travel
+            The Sol of African Tours
           </h1>
           <p
             style={{
@@ -56,7 +56,7 @@ export default async function Image() {
               lineHeight: 1.4,
             }}
           >
-            Tour agency that connects tourist with magical destinations
+            Discover the heart of Africa through extraordinary journeys
           </p>
           <div
             style={{
@@ -72,7 +72,7 @@ export default async function Image() {
                 width: '30px',
                 height: '30px',
                 borderRadius: '50%',
-                backgroundImage: 'url(https://utfs.io/f/ArG5MLmlQNB83hRMPaRt9fXeGmPCIWkEMYszTNgnKv4J01Ud)',
+                backgroundImage: 'url(https://utfs.io/f/your-logo-url-here)',
                 backgroundSize: 'cover',
               }}
             />
@@ -82,17 +82,17 @@ export default async function Image() {
                 color: '#666',
               }}
             >
-              www.forestlinetours.com
+              www.thesolofafrican.com
             </span>
           </div>
         </div>
-
+        
         {/* Right image section */}
         <div
           style={{
             width: '50%',
             height: '100%',
-            backgroundImage: 'url(https://utfs.io/f/ArG5MLmlQNB83hRMPaRt9fXeGmPCIWkEMYszTNgnKv4J01Ud)',
+            backgroundImage: 'url(https://utfs.io/f/your-background-image-url-here)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

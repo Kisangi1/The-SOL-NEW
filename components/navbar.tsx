@@ -25,14 +25,14 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full bg-gray-900 shadow-lg">
       <nav className="container mx-auto px-4">
-        <div className="flex h-20 sm:h-32 items-center justify-between">
+        <div className="flex h-24 sm:h-28 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Image 
               src="/images/logo.jpeg" 
               alt="Sol of African Tours" 
-              width={120} 
-              height={120}
-              className="hidden sm:block rounded-full"
+              width={80} 
+              height={80}
+              className="hidden sm:block rounded-full object-cover"
             />
             <span className="text-xl font-bold text-orange-500">
               Sol of African Tours
@@ -65,7 +65,7 @@ const Navbar = () => {
                         <h3 className="font-medium text-orange-500 mb-2">Popular Destinations</h3>
                         <ul className="grid grid-cols-2 gap-2">
                           <li><Link href="/destinations/masaai-mara" className="flex items-center text-sm hover:text-orange-500">Masai Mara <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/nairobi-national-park" className="flex items-center text-sm hover:text-orange-500">Nairobi National Park <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/destinations/nairobi-park" className="flex items-center text-sm hover:text-orange-500">Nairobi National Park <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
                           <li><Link href="/destinations/amboseli" className="flex items-center text-sm hover:text-orange-500">Amboseli <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
                           <li><Link href="/destinations/samburu" className="flex items-center text-sm hover:text-orange-500">Samburu <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
                           <li><Link href="/destinations/kenyan-coast" className="flex items-center text-sm hover:text-orange-500">Kenyan Coast <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
@@ -152,7 +152,7 @@ const MobileNav = ({ onClose }: { onClose: () => void }) => {
             <div className="ml-4 space-y-2 mt-2">
               <ul className="space-y-2">
                 <li><Link href="/destinations/masaai-mara" className="block text-sm hover:text-orange-500" onClick={onClose}>Masai Mara</Link></li>
-                <li><Link href="/destinations/nairobi-national-park" className="block text-sm hover:text-orange-500" onClick={onClose}>Nairobi National Park</Link></li>
+                <li><Link href="/destinations/nairobi-park" className="block text-sm hover:text-orange-500" onClick={onClose}>Nairobi National Park</Link></li>
                 <li><Link href="/destinations/amboseli" className="block text-sm hover:text-orange-500" onClick={onClose}>Amboseli</Link></li>
                 <li><Link href="/destinations/samburu" className="block text-sm hover:text-orange-500" onClick={onClose}>Samburu</Link></li>
                 <li><Link href="/destinations/kenyan-coast" className="block text-sm hover:text-orange-500" onClick={onClose}>Kenyan Coast</Link></li>
@@ -169,7 +169,7 @@ const MobileNav = ({ onClose }: { onClose: () => void }) => {
             Blogs
           </Link>
           <Link href="/contact" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
-          Contact Us
+            Contact Us
           </Link>
         </div>
       </div>

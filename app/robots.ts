@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
-  const domain = 'https://www.forestlinetours.com'
+  const domain = 'https://www.thesolofafrican.com'
 
   return {
     rules: [
@@ -13,7 +13,8 @@ export default function robots(): MetadataRoute.Robots {
           '/destinations',
           '/about',
           '/contact',
-          '/services'
+          '/blogs',
+          '/gallery',
         ],
         disallow: [
           '/management-portal/*',
