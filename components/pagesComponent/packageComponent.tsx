@@ -53,6 +53,11 @@ export default function PackagesPage({ initialPackages }: PackagesPageProps) {
 
       {/* Packages Section */}
       <div className="container mx-auto py-8">
+      <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 text-center">
+          <span className="text-amber-600 font-sans">Explore </span>Destinations
+        </h2>
+        <div className="w-16 sm:w-20 md:w-24 h-1 bg-amber-600 mx-auto mb-4 sm:mb-5 md:mb-6" />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {paginatedPackages.map((pkg) => (
             <Card key={pkg.id} className="flex flex-col">
