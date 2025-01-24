@@ -6,6 +6,7 @@ import EcoTourismFeatures from '../../components/eco-tourism-features'
 import { PromoBanner } from '@/components/ui/promoModal'
 import HomeSection from '@/components/home/homepage'      
 
+
 function HomePage() {
   return (
     <div className='bg-green-50'>
