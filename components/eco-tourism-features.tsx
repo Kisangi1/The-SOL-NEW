@@ -57,10 +57,10 @@ export default function SolAfricanFeatures() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
               <div className="absolute bottom-0 p-8 text-white">
-                <span className="text-amber-400 text-sm tracking-wider">FEATURED EXPERIENCE</span>
+                <span className="text-amber-700 text-sm tracking-wider bg-white rounded-full px-4 py-2">FEATURED EXPERIENCE</span>
                 <h3 className="text-3xl font-bold my-3">Wildbeast Migration</h3>
                 <p className="text-gray-200 mb-4">Witness nature&apos;s greatest spectacle</p>
-                <button className="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-full transition-colors">
+                <button className="bg-amber-700 hover:bg-amber-600 text-white px-6 py-3 rounded-full transition-colors">
                   Book Now
                 </button>
               </div>
@@ -76,10 +76,12 @@ export default function SolAfricanFeatures() {
                 <h3 className="text-xl font-bold mb-2">{exp.title}</h3>
                 <p className="text-gray-600 text-sm">{exp.description}</p>
                 <div className="mt-4 flex items-center text-amber-600 text-sm font-medium">
-                  Learn more
-                  <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  <a href="/destinations" className="flex items-center">
+                    Learn more
+                    <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
                 </div>
               </div>
             ))}
