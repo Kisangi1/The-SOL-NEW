@@ -49,7 +49,7 @@ export default async function PackagePage({ params }: { params: { id: string } }
       {/* Hero Section */}
       <div className="relative h-[50vh] md:h-[60vh] lg:h-[70vh] w-full overflow-hidden">
         <Image
-          src={tourPackage.imageData || "/images/hero_packages.jpg"}
+          src={tourPackage.imageData || "/images/destinations.jpeg"}
           alt={`${tourPackage.name} landscape`}
           fill
           className="absolute inset-0 w-full h-full object-cover"

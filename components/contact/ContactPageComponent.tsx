@@ -99,7 +99,7 @@ export default function ContactPage() {
       {/* Enhanced Banner Section */}
       <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] w-full overflow-hidden">
         <Image
-          src="/images/hero_packages.jpg"
+           src="/images/destinations.jpeg"
           alt="African landscape"
           width={1920}
           height={1080}
@@ -113,11 +113,9 @@ export default function ContactPage() {
                 Your Gateway to African Adventures
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                Contact Us
+              Chat <span className="text-orange-400"> with</span> us
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl text-gray-200 max-w-2xl">
-                Let us help you plan your unforgettable African journey
-              </p>
+             
             </div>
           </div>
         </div>

@@ -60,7 +60,7 @@ export default function AboutPageComponent () {
       {/* Hero Section */}
       <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden">
         <Image
-          src="/images/hero_packages.jpg"
+          src="/images/destinations.jpeg"
           alt="African landscape"
           fill
           className="object-cover"
@@ -72,7 +72,7 @@ export default function AboutPageComponent () {
               Discover Our Story
             </span>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
-              The Sol of <span className="text-orange-400">African</span> Travel
+            Understand<span className="text-orange-400"> our</span> story
             </h1>
           </div>
         </div>

@@ -39,7 +39,7 @@ export default async function DestinationPage({ params }: { params: { slug: stri
       {/* Hero Banner */}
       <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] w-full overflow-hidden">
         <Image
-          src={destination.imageData || "/images/hero_packages.jpg"}
+          src={destination.imageData || "/images/destinations.jpeg"}
           alt={destination.name}
           width={1920}
           height={1080}

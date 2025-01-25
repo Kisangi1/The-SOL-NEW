@@ -35,7 +35,7 @@ export default async function DestinationsPage() {
       {/* Hero Banner - Enhanced Responsiveness */}
       <div className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] w-full overflow-hidden">
         <Image
-          src="/images/hero_packages.jpg"
+           src="/images/destinations.jpeg"
           alt="African landscape"
           fill
           className="absolute inset-0 object-cover"
@@ -49,11 +49,8 @@ export default async function DestinationsPage() {
                 Your Gateway to African Adventures
               </span>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-3 md:mb-4 leading-tight">
-                Explore Our Destinations
+              Explore <span className="text-orange-400">our</span> destinations
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-200 max-w-2xl">
-                Discover the breathtaking landscapes and unique experiences of Africa
-              </p>
             </div>
           </div>
         </div>

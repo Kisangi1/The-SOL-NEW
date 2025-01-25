@@ -25,7 +25,7 @@ export default function TermsAndPrivacyPage() {
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       <div className="relative h-[40vh] w-full overflow-hidden">
         <Image
-          src="/images/hero_packages.jpg"
+           src="/images/destinations.jpeg"
           alt="Legal Information"
           width={1920}
           height={1080}
@@ -39,11 +39,9 @@ export default function TermsAndPrivacyPage() {
                 Legal Information
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                Terms & Privacy
+              Terms <span className="text-orange-400"> &</span> Privacy
               </h1>
-              <p className="text-lg md:text-xl lg:text-2xl text-gray-200 max-w-2xl">
-                Our commitment to transparency and your privacy
-              </p>
+             
             </div>
           </div>
         </div>
