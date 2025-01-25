@@ -136,7 +136,7 @@ export default function Component({ isOpen, setIsOpen }: SidebarProps) {
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-6 text-primary">
             <div className="flex items-center space-x-2">
-              <h2 className="text-md font-bold">The Sol Of Africa</h2>
+              <h2 className="text-md font-bold">The Sol Of African</h2>
             </div>
             <Button
               variant="ghost"
