@@ -196,7 +196,7 @@ const AfricanToursFooter = () => {
           <div className="mt-12 pt-8 border-t border-gray-800 font-sans">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-gray-400 text-sm">
-                © {currentYear} Sol of African Tours. All rights reserved.
+                © {currentYear} Sol Of African Tours. All rights reserved.
               </div>
               <div className="flex flex-wrap justify-center gap-4 text-sm">
                 <a href="/terms-and-condition" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">

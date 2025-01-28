@@ -35,7 +35,7 @@ export default async function DestinationsPage() {
       {/* Hero Banner - Enhanced Responsiveness */}
       <div className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] w-full overflow-hidden">
         <Image
-           src="/images/destinations.jpeg"
+          src="/images/destinations.jpeg"
           alt="African landscape"
           fill
           className="absolute inset-0 object-cover"
@@ -49,7 +49,7 @@ export default async function DestinationsPage() {
                 Your Gateway to African Adventures
               </span>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-3 md:mb-4 leading-tight">
-              Explore <span className="text-orange-400">our</span> destinations
+                Explore <span className="text-orange-400">our</span> destinations
               </h1>
             </div>
           </div>
@@ -69,16 +69,18 @@ export default async function DestinationsPage() {
               key={destination.id} 
               className="flex flex-col shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
             >
-              <CardHeader className="p-0 relative">
-                <Image
-                  src={destination.imageData || "/placeholder.svg"}
-                  alt={destination.name}
-                  fill
-                  className="w-full h-40 sm:h-44 md:h-48 lg:h-52 xl:h-56 object-cover rounded-t-lg"
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                />
-                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-orange-500 font-sans text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
-                  KES {destination.amount.toLocaleString()}
+              <CardHeader className="p-0">
+                <div className="relative w-full h-40 sm:h-44 md:h-48 lg:h-52 xl:h-56">
+                  <Image
+                    src={destination.imageData || "/placeholder.svg"}
+                    alt={destination.name}
+                    fill
+                    className="object-cover rounded-t-lg"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  />
+                  <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-orange-500 font-sans text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+                    KES {destination.amount.toLocaleString()}
+                  </div>
                 </div>
               </CardHeader>
               <CardContent className="flex-grow p-3 sm:p-4">
