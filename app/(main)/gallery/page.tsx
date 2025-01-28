@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Metadata } from 'next';
+
 export const metadata: Metadata = {
   title: "Gallery | Sol Of African",
   description: "Explore breathtaking moments from our African travel experiences. Discover the raw beauty, wildlife, and cultural landscapes that define our extraordinary journeys.",
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     title: "Sol Of African: Visual Journey",
     description: "A visual exploration of Africa's most stunning destinations and unforgettable experiences.",
     type: "website",
-    images: ["/images/safari-lion.jpg"]
+    images: ["/images/one.jpg"]
   }
 };
 
@@ -25,7 +26,7 @@ const HeroSection = () => {
   return (
     <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden">
       <Image
-          src="/images/destinations.jpeg"
+        src="/images/destinations.jpeg"
         alt="African landscape"
         fill
         className="object-cover"
@@ -48,41 +49,36 @@ const HeroSection = () => {
 // Gallery Images Configuration
 const galleryImages = [
   {
-    src: '/images/elephant.jpg',
-    alt: 'Majestic lion in savanna',
-    featured: true
+    src: '/images/one.jpg',
+    alt: 'Rhino in the savannah'
   },
   {
-    src: '/images/elephant.jpg',
-    alt: 'Elephant herd at sunset'
+    src: '/images/three.jpg',
+    alt: 'Gazelles grazing in the wild'
   },
   {
-    src: '/images/elephant.jpg',
-    alt: 'Dramatic African landscape'
+    src: '/images/a.jpg',
+    alt: 'Elephants at the field'
   },
   {
-    src: '/images/elephant.jpg',
-    alt: 'Traditional tribal dance'
-  },
-  {
-    src: '/images/elephant.jpg',
+    src: '/images/two.jpg',
     alt: 'Mount Kilimanjaro at dawn'
   },
   {
-    src: '/images/elephant.jpg',
-    alt: 'Giraffes in open plains'
+    src: '/images/c.jpg',
+    alt: 'Lion resting under a tree'
   },
   {
-    src: '/images/elephant.jpg',
-    alt: 'Vibrant African market scene'
+    src: '/images/d.jpg',
+    alt: 'Giraffes in the wild'
   },
   {
-    src: '/images/elephant.jpg',
-    alt: 'Wildebeest river crossing'
+    src: '/images/e.jpg',
+    alt: 'Vultures eating a carcass'
   },
   {
-    src: '/images/elephant.jpg',
-    alt: 'Sunset over acacia trees'
+    src: '/images/b.jpg',
+    alt: 'Zebra herd in the savannah'
   }
 ];
 
@@ -100,23 +96,24 @@ const GalleryGrid = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {galleryImages.map((image, index) => (
             <div
               key={index}
-              className={`relative overflow-hidden rounded-xl shadow-lg ${
-                image.featured ? 'md:col-span-2' : ''
-              }`}
+              className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="aspect-[4/3] relative group">
+              <div className="aspect-square relative group">
                 <Image
                   src={image.src}
                   alt={image.alt}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-500"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white text-sm font-medium">{image.alt}</p>
+                </div>
               </div>
             </div>
           ))}

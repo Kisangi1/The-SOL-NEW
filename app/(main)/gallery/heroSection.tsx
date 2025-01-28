@@ -8,7 +8,7 @@ export default function HeroSection() {
       <div className="relative z-10 overflow-hidden bg-black text-white">
         <div className="h-40 md:h-60 lg:h-80">
           <Image
-            src="/images/hero_packages.jpg"
+             src="/images/destinations.jpeg"
             alt="Hero image"
             width={1920}
             height={1080}

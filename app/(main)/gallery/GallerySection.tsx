@@ -3,36 +3,36 @@ import Image from 'next/image';
 
 const images = [
   {
-    src: '/images/elephant.jpg',
+    src: '/images/one.jpg',
     alt: 'Next.js Conference Logo with Golden Gate Bridge',
     featured: true
   },
   {
-    src: '/images/forest.jpg',
+    src: '/images/two.jpg',
     alt: 'Conference attendee in Next.js t-shirt'
   },
   {
-    src: '/images/forest.jpg',
+    src: '/images/three.jpg',
     alt: 'Conference auditorium view'
   },
   {
-    src: '/images/forest.jpg',
+    src: '/images/a.jpg',
     alt: 'Conference speakers on stage'
   },
   {
-    src: '/images/forest.jpg',
+    src: '/images/b.jpg',
     alt: 'Conference attendees having fun'
   },
   {
-    src: '/images/forest.jpg',
+    src: '/images/c.jpg',
     alt: 'Group photo of conference attendees'
   },
   {
-    src: '/images/forest.jpg',
+    src: '/images/d.jpg',
     alt: 'Team members networking'
   },
   {
-    src: '/images/forest.jpg',
+    src: '/images/e.jpg',
     alt: 'Conference attendees group photo'
   },
   {
