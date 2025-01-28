@@ -142,7 +142,8 @@ const AfricanToursFooter = () => {
                   'masai-mara',
                   'serengeti',
                   'samburu',
-                  'kenyan-coast,',
+                  'diani,',
+                  'watamu,' , 
                   'zanzibar'
                 ].map((item) => (
                   <li key={item}>
