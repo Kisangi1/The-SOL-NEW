@@ -75,7 +75,7 @@ export default function FeaturesSection() {
           <div className="w-full lg:w-1/2 relative">
             <div className="relative h-64 sm:h-96 lg:h-[600px] w-full">
               <Image
-                src="/images/safari.svg"
+                src="/images/kilimanjaro.jpg"
                 alt="African Safari"
                 className="rounded-2xl object-cover"
                 fill
