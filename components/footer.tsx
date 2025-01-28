@@ -1,8 +1,9 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { Facebook, Instagram, Twitter,  Send, ChevronUp } from 'lucide-react';
+import { Facebook, Instagram,   Send, ChevronUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { z } from 'zod';
+import { FaTiktok } from "react-icons/fa";
 
 const emailSchema = z.string().email({ message: "Invalid email address" });
 
@@ -102,7 +103,7 @@ const AfricanToursFooter = () => {
                 {[
                   { Icon: Facebook, href: "https://www.facebook.com/share/xJYd3ocdUWag4jsW/?mibextid=LQQJ4d" },
                   { Icon: Instagram, href: "https://www.instagram.com/sol_of_african" },
-                  { Icon: Twitter, href: "https://www.tiktok.com/@the_sol_of_african?_t=8oTCnrkSdFe&_r=1" },
+                  { Icon:  FaTiktok, href: "https://www.tiktok.com/@the_sol_of_african" },
                 ].map(({ Icon, href }, index) => (
                   <a
                     key={index}

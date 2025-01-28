@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { Binoculars, Mountain, Sun, Users } from 'lucide-react';
+import Link from "next/link";
+
 
 export default function SolAfricanFeatures() {
   const experiences = [
@@ -60,9 +62,11 @@ export default function SolAfricanFeatures() {
                 <span className="text-amber-700 text-sm tracking-wider bg-white rounded-full px-4 py-2">FEATURED EXPERIENCE</span>
                 <h3 className="text-3xl font-bold my-3">Wildbeast Migration</h3>
                 <p className="text-gray-200 mb-4">Witness nature&apos;s greatest spectacle</p>
+                <Link href="destinations/masai-mara">
                 <button className="bg-amber-700 hover:bg-amber-600 text-white px-6 py-3 rounded-full transition-colors">
                   Book Now
                 </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -85,9 +85,9 @@ export default function FeaturesSection() {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div>
                     <p className="text-lg font-semibold">Serengeti Safari</p>
-                    <p className="text-amber-600 font-sans">Starting from kes. 35000/-</p>
+                    <p className="text-amber-600 font-sans">Have taste of aild animals and mt. Kilimanjaro view</p>
                   </div>
-                  <Link href="destination/serengeti">
+                  <Link href="destinations/serengeti">
                     <Button size="sm" className="w-full sm:w-auto bg-amber-600 hover:bg-amber-700">
                       Book Now
                     </Button>

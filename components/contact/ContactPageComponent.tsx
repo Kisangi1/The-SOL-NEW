@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { FaTiktok } from "react-icons/fa";
 import {
   Phone,
   Mail,
@@ -11,7 +12,6 @@ import {
   Clock,
   Facebook,
   Instagram,
-  Twitter,
 } from "lucide-react";
 import { toast } from "sonner";
 import Image from 'next/image';
@@ -88,9 +88,9 @@ export default function ContactPage() {
       label: "Instagram",
     },
     {
-      icon: Twitter,
-      href: "https://www.twitter.com/solofafrica",
-      label: "Twitter",
+      icon: FaTiktok,
+      href: "https://www.tiktok.com/@the_sol_of_african",
+      label: "TikTok",
     },
   ];
 
