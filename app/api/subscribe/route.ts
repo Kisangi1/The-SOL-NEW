@@ -1,13 +1,12 @@
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
 import nodemailer from 'nodemailer';
+import { findSubscriberByEmail, createSubscriber } from '@/lib/db';
 
-// Define the schema for the request body
 const subscribeSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
 });
 
-// Create a nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -20,19 +19,29 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     
-    // Validate the request body
     const result = subscribeSchema.safeParse(body);
     
     if (!result.success) {
-      // If validation fails, return a 400 error with the validation issues
-      return NextResponse.json({ error: result.error.issues[0].message }, { status: 400 });
+      return NextResponse.json(
+        { error: result.error.issues[0].message }, 
+        { status: 400 }
+      );
     }
 
     const { email } = result.data;
 
-    // Here you would typically:
-    // 1. Check if the email already exists in your database
-    // 2. Add the email to your newsletter list (database or external service)
+    // Check if email already exists using the db helper
+    const existingSubscriber = await findSubscriberByEmail(email);
+
+    if (existingSubscriber) {
+      return NextResponse.json(
+        { error: 'You are already subscribed to our newsletter!' },
+        { status: 409 }
+      );
+    }
+
+    // Create new subscriber using the db helper
+    await createSubscriber(email);
 
     // Send confirmation email
     const confirmationMailOptions = {
@@ -40,19 +49,37 @@ export async function POST(request: Request) {
       to: email,
       subject: 'Welcome to Our Newsletter!',
       html: `
-        <h1>Mazingira Tours and Travel Newsletter!</h1>
-        <p>Thank you for subscribing to our newsletter. We're excited to share our latest eco-friendly travel tips and sustainable destinations with you.</p>
-        <p>Stay tuned for our upcoming newsletters!</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h1 style="color: #ea580c;">The Sol Of African Tours and Travel Newsletter!</h1>
+          <p>Thank you for subscribing to our newsletter. We're excited to share our latest safari travel tips and sustainable destinations with you.</p>
+          <p>Here's what you can expect from us:</p>
+          <ul>
+            <li>Exclusive travel deals and packages</li>
+            <li>Tips for planning your African safari</li>
+            <li>Updates about new destinations and experiences</li>
+            <li>Sustainable travel insights</li>
+          </ul>
+          <p>Stay tuned for our upcoming newsletters!</p>
+          <p style="color: #666; font-size: 12px; margin-top: 20px;">
+            If you didn't subscribe to our newsletter, please ignore this email.
+          </p>
+        </div>
       `
     };
 
     await transporter.sendMail(confirmationMailOptions);
 
-    console.log(`Subscribed and sent confirmation to: ${email}`);
-
-    return NextResponse.json({ message: 'Subscription successful. Please check your email for confirmation.' }, { status: 200 });
+    return NextResponse.json(
+      { message: 'Subscription successful. Please check your email for confirmation.' },
+      { status: 200 }
+    );
+    
   } catch (error) {
     console.error('Newsletter subscription error:', error);
-    return NextResponse.json({ error: 'An unexpected error occurred' }, { status: 500 });
+    
+    return NextResponse.json(
+      { error: 'An unexpected error occurred. Please try again later.' },
+      { status: 500 }
+    );
   }
 }

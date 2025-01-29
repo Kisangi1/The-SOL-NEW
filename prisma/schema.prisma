@@ -86,6 +86,14 @@ model KeepAlive {
   random String? @default(dbgenerated("gen_random_uuid()")) @db.Uuid
 }
 
+model Subscriber {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  status       String   @default("ACTIVE")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 enum Role {
   ADMIN
   USER

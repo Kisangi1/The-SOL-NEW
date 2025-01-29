@@ -61,3 +61,18 @@ export async function createBooking(data: Omit<Booking, "id" | "createdAt" | "up
   })
 }
 
+export async function findSubscriberByEmail(email: string) {
+  return await prisma.subscriber.findUnique({
+    where: { email },
+  })
+}
+
+export async function createSubscriber(email: string) {
+  return await prisma.subscriber.create({
+    data: {
+      email,
+      status: 'ACTIVE',
+    },
+  })
+}
+
