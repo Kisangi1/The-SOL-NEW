@@ -4,7 +4,9 @@ import { Facebook, Instagram, Send, ChevronUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { z } from 'zod';
 import { FaTiktok } from "react-icons/fa";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from 'sonner';
+
+
 
 const emailSchema = z.string().email({ message: "Invalid email address" });
 
@@ -48,7 +50,6 @@ const ScrollToTopButton = () => {
 };
 
 const AfricanToursFooter = () => {
-  const { toast } = useToast();
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -70,19 +71,13 @@ const AfricanToursFooter = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast({
-          title: "Success!",
-          description: "Thank you for subscribing to our newsletter.",
-          variant: "default",
-          className: "bg-green-500 text-white",
+        toast.success("Thank you for subscribing to our newsletter!", {
+          description: "You'll receive updates about new tours and exclusive offers.",
         });
         setEmail('');
       } else if (response.status === 409) {
-        toast({
-          title: "Already Subscribed",
-          description: data.error,
-          variant: "default",
-          className: "bg-orange-500 text-white",
+        toast.info("Already subscribed!", {
+          description: data.error || "This email is already registered for our newsletter.",
         });
       } else {
         throw new Error(data.error || 'Failed to subscribe');
@@ -96,10 +91,8 @@ const AfricanToursFooter = () => {
         errorMessage = error.message;
       }
 
-      toast({
-        title: "Error",
+      toast.error("Subscription failed", {
         description: errorMessage,
-        variant: "destructive",
       });
     } finally {
       setIsLoading(false);
@@ -108,7 +101,7 @@ const AfricanToursFooter = () => {
 
   return (
     <>
-      <footer className="bg-gray-900 text-white">
+        <footer className="bg-gray-900 text-white">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Company Info */}
@@ -169,10 +162,10 @@ const AfricanToursFooter = () => {
                 ].map((item) => (
                   <li key={item}>
                     <a
-                      href={`/destinations/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                      href={`/destinations/${item}`}
                       className="text-gray-300 hover:text-orange-500 transition-colors duration-200 block py-1"
                     >
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                      {item.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                     </a>
                   </li>
                 ))}
