@@ -1,120 +1,172 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { Card, CardContent, CardFooter} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Package } from "@prisma/client";
+import { Select } from "@/components/ui/select";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import Image from "next/image";
+import { Pagination } from "@/components/ui/pagination"; // Ensure correct import
+
+interface Package {
+  id: string;
+  name: string;
+  description: string;
+  amount: number;
+  numberOfDays: number;
+  dayOrNight: string;
+  type: string;
+  imageData?: string | null;
+}
+
+interface PackageMetadata {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
 
 interface PackagesPageProps {
   initialPackages: Package[];
+  metadata: PackageMetadata;
 }
 
-const ITEMS_PER_PAGE = 6;
+const PackageTypes = [
+  "ALL",
+  "VALENTINE",
+  "BIRTHDAY",
+  "CHRISTMAS",
+  "EASTER",
+  "EID",
+  "WEEKEND",
+  "HONEYMOON",
+  "OTHER",
+];
 
-export default function PackagesPage({ initialPackages }: PackagesPageProps) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(initialPackages.length / ITEMS_PER_PAGE);
+export default function PackagesPage({ initialPackages, metadata }: PackagesPageProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [selectedType, setSelectedType] = useState(searchParams.get("type") || "ALL");
 
-  const paginatedPackages = initialPackages.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE, 
-    currentPage * ITEMS_PER_PAGE
-  );
+  const createQueryString = (name: string, value: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+    return params.toString();
+  };
+
+  const handleTypeChange = (value: string) => {
+    setSelectedType(value);
+    const type = value === "ALL" ? "" : value;
+    router.push(`${pathname}?${createQueryString("type", type)}`);
+  };
+
+  const handlePageChange = (page: number) => {
+    router.push(`${pathname}?${createQueryString("page", page.toString())}`);
+  };
+
+  // Ensuring the page is only rendered on the client side to avoid SSR issues with useContext
+  const [isClient, setIsClient] = useState(false);
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Or a loading spinner
+  }
 
   return (
-    <div className="bg-gray-50">
-      {/* Hero Banner */}
-      <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] w-full overflow-hidden">
+    <div className="container mx-auto py-8">
+      {/* Hero Section */}
+      <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden">
         <Image
           src="/images/destinations.jpeg"
           alt="African landscape"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          className="object-cover"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent">
-          <div className="container mx-auto h-full px-4">
-            <div className="flex flex-col justify-center h-full max-w-4xl">
-              <span className="text-orange-300 text-sm md:text-base lg:text-lg font-medium mb-4">
-                Your Gateway to African Adventures
-              </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-              Explore <span className="text-orange-400">our</span> packages
-              </h1>
-             
-            </div>
+          <div className="container mx-auto px-4 h-full flex flex-col justify-center">
+            <span className="text-orange-300 text-base sm:text-lg font-medium mb-4">
+              Discover Our Story
+            </span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+              Understand<span className="text-orange-400"> our</span> story
+            </h1>
           </div>
         </div>
       </div>
 
-      {/* Packages Section */}
-      <div className="container mx-auto py-12 px-4">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center">
-          <span className="text-amber-600">Explore </span>Destinations
-        </h2>
-        <div className="w-16 md:w-24 h-1 bg-amber-600 mx-auto mb-10" />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {paginatedPackages.map((pkg) => (
-            <Card 
-              key={pkg.id} 
-              className="flex flex-col shadow-lg hover:shadow-xl transition-shadow duration-300 border-0 rounded-xl overflow-hidden"
-            >
-              {pkg.imageData && (
-                <div className="relative w-full h-56">
-                  <Image
-                    src={pkg.imageData || "/placeholder.svg"}
-                    alt={pkg.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    {pkg.type} Package
-                  </div>
-                </div>
-              )}
-              <CardContent className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{pkg.name}</h3>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xl font-bold text-amber-600">
-                    KES {pkg.amount.toLocaleString()}/-
-                  </span>
-                </div>
-              </CardContent>
-              <CardFooter className="p-6 pt-0">
-                <Link href={`/packages/${pkg.id}`} className="w-full" passHref>
-                  <Button className="w-full bg-amber-600 hover:bg-amber-700 transition-colors">
-                    View Details
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
+      {/* Destination Title Section */}
+      <div className="flex justify-between items-center mb-6">
+        <span className="text-xs sm:text-sm md:text-base lg:text-lg font-medium mb-2 sm:mb-3 md:mb-4 text-orange-300">
+          Your Gateway to African Adventures
+        </span>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-3 md:mb-4 leading-tight">
+          Explore <span className="text-orange-400">our</span> destinations
+        </h1>
+        <Select value={selectedType} onValueChange={handleTypeChange}>
+          {PackageTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
           ))}
-        </div>
-
-        {/* Pagination Controls */}
-        <div className="flex justify-center items-center mt-10 space-x-4">
-          <Button 
-            variant="outline"
-            onClick={() => setCurrentPage(page => Math.max(1, page - 1))}
-            disabled={currentPage === 1}
-          >
-            Previous
-          </Button>
-          <span className="text-gray-600">
-            Page {currentPage} of {totalPages}
-          </span>
-          <Button 
-            variant="outline"
-            onClick={() => setCurrentPage(page => Math.min(totalPages, page + 1))}
-            disabled={currentPage === totalPages}
-          >
-            Next
-          </Button>
-        </div>
+        </Select>
       </div>
+
+      {/* Packages Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {initialPackages.map((pkg) => (
+          <Card key={pkg.id} className="flex flex-col">
+            {pkg.imageData && (
+              <div className="relative h-48 w-full">
+                <Image
+                  src={pkg.imageData}
+                  alt={pkg.name}
+                  fill
+                  className="object-cover rounded-t-lg"
+                />
+              </div>
+            )}
+            <CardHeader>
+              <CardTitle>{pkg.name}</CardTitle>
+              <CardDescription>{pkg.type} Package</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-gray-600">{pkg.description}</p>
+              <div className="mt-4">
+                <p className="font-bold text-2xl">KES {pkg.amount.toLocaleString()}/-</p>
+                <p>{pkg.numberOfDays} {pkg.dayOrNight}s</p>
+              </div>
+            </CardContent>
+            <CardFooter className="mt-auto">
+              <Link href={`/packages/${pkg.id}`} className="w-full">
+                <Button className="w-full">View Details</Button>
+              </Link>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+
+      {/* Pagination */}
+      {metadata.totalPages > 1 && (
+        <div className="mt-8 flex justify-center">
+          <Pagination
+            page={metadata.page} // Ensure correct prop names
+            totalPages={metadata.totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </div>
   );
 }

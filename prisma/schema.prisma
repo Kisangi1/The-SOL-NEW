@@ -61,6 +61,9 @@ model Package {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   bookings      Booking[]
+   @@index([type])
+  @@index([createdAt])
+
 }
 
 

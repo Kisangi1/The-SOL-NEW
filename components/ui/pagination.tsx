@@ -1,47 +1,73 @@
-import * as React from "react"
+import * as React from "react";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   DotsHorizontalIcon,
-} from "@radix-ui/react-icons"
+} from "@radix-ui/react-icons";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
-import { cn } from "@/lib/utils"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
+interface PaginationProps {
+  page: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  className?: string;
+}
 
-const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
+interface PaginationLinkProps extends React.ComponentProps<"a"> {
+  isActive?: boolean;
+  size?: "default" | "sm" | "lg" | "icon";
+  disabled?: boolean;
+}
+
+const Pagination = ({ page, totalPages, onPageChange, className }: PaginationProps) => (
   <nav
     role="navigation"
     aria-label="pagination"
     className={cn("mx-auto flex w-full justify-center", className)}
-    {...props}
-  />
-)
-Pagination.displayName = "Pagination"
+  >
+    <PaginationPrevious
+      onClick={() => onPageChange(page - 1)}
+      disabled={page === 1}
+    />
+    <PaginationContent>
+      {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+        <PaginationItem key={pageNumber}>
+          <PaginationLink
+            isActive={page === pageNumber}
+            onClick={() => onPageChange(pageNumber)}
+          >
+            {pageNumber}
+          </PaginationLink>
+        </PaginationItem>
+      ))}
+    </PaginationContent>
+    <PaginationNext
+      onClick={() => onPageChange(page + 1)}
+      disabled={page === totalPages}
+    />
+  </nav>
+);
 
-const PaginationContent = React.forwardRef<
-  HTMLUListElement,
-  React.ComponentProps<"ul">
->(({ className, ...props }, ref) => (
-  <ul
-    ref={ref}
-    className={cn("flex flex-row items-center gap-1", className)}
-    {...props}
-  />
-))
-PaginationContent.displayName = "PaginationContent"
+Pagination.displayName = "Pagination";
 
-const PaginationItem = React.forwardRef<
-  HTMLLIElement,
-  React.ComponentProps<"li">
->(({ className, ...props }, ref) => (
-  <li ref={ref} className={cn("", className)} {...props} />
-))
-PaginationItem.displayName = "PaginationItem"
+const PaginationContent = React.forwardRef<HTMLUListElement, React.ComponentProps<"ul">>(
+  ({ className, ...props }, ref) => (
+    <ul
+      ref={ref}
+      className={cn("flex flex-row items-center gap-1", className)}
+      {...props}
+    />
+  )
+);
+PaginationContent.displayName = "PaginationContent";
 
-type PaginationLinkProps = {
-  isActive?: boolean
-} & Pick<ButtonProps, "size"> &
-  React.ComponentProps<"a">
+const PaginationItem = React.forwardRef<HTMLLIElement, React.ComponentProps<"li">>(
+  ({ className, ...props }, ref) => (
+    <li ref={ref} className={cn("", className)} {...props} />
+  )
+);
+PaginationItem.displayName = "PaginationItem";
 
 const PaginationLink = ({
   className,
@@ -60,8 +86,8 @@ const PaginationLink = ({
     )}
     {...props}
   />
-)
-PaginationLink.displayName = "PaginationLink"
+);
+PaginationLink.displayName = "PaginationLink";
 
 const PaginationPrevious = ({
   className,
@@ -76,8 +102,8 @@ const PaginationPrevious = ({
     <ChevronLeftIcon className="h-4 w-4" />
     <span>Previous</span>
   </PaginationLink>
-)
-PaginationPrevious.displayName = "PaginationPrevious"
+);
+PaginationPrevious.displayName = "PaginationPrevious";
 
 const PaginationNext = ({
   className,
@@ -92,8 +118,8 @@ const PaginationNext = ({
     <span>Next</span>
     <ChevronRightIcon className="h-4 w-4" />
   </PaginationLink>
-)
-PaginationNext.displayName = "PaginationNext"
+);
+PaginationNext.displayName = "PaginationNext";
 
 const PaginationEllipsis = ({
   className,
@@ -107,8 +133,8 @@ const PaginationEllipsis = ({
     <DotsHorizontalIcon className="h-4 w-4" />
     <span className="sr-only">More pages</span>
   </span>
-)
-PaginationEllipsis.displayName = "PaginationEllipsis"
+);
+PaginationEllipsis.displayName = "PaginationEllipsis";
 
 export {
   Pagination,
@@ -118,4 +144,4 @@ export {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
-}
+};
