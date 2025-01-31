@@ -1,4 +1,3 @@
-// app/(main)/packages/page.tsx
 import { prisma } from "@/lib/db";
 import PackagesPage from "@/components/pagesComponent/packageComponent";
 import { Suspense } from "react";
@@ -8,7 +7,6 @@ export const revalidate = 3600; // Revalidate every hour
 
 async function getPackages(page = 1, limit = 12) {
   try {
-    // Add error handling for database connection
     if (!prisma) {
       throw new Error("Database connection failed");
     }
