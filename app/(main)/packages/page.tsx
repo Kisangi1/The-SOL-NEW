@@ -1,26 +1,22 @@
+// app/(main)/packages/page.tsx
 import { prisma } from "@/lib/db";
 import PackagesPage from "@/components/pagesComponent/packageComponent";
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Packages | Sol Of African",
-  description: "Discover our curated selection of African adventure packages.",
-  // ... rest of your metadata
-};
+import { Suspense } from "react";
+import Loading from "@/components/other/loading";
 
 export const revalidate = 3600; // Revalidate every hour
 
-async function getPackages(page = 1, limit = 10, type?: string) {
-  const skip = (page - 1) * limit;
-  
+async function getPackages(page = 1, limit = 12) {
   try {
-    const where = type ? { type } : {};
-    
+    // Add error handling for database connection
+    if (!prisma) {
+      throw new Error("Database connection failed");
+    }
+
     const [packages, total] = await Promise.all([
       prisma.package.findMany({
         take: limit,
-        skip,
-        where,
+        skip: (page - 1) * limit,
         orderBy: { createdAt: 'desc' },
         select: {
           id: true,
@@ -33,15 +29,15 @@ async function getPackages(page = 1, limit = 10, type?: string) {
           imageData: true,
         }
       }),
-      prisma.package.count({ where })
+      prisma.package.count()
     ]);
 
     return {
       packages,
       metadata: {
-        total,
         page,
         limit,
+        total,
         totalPages: Math.ceil(total / limit)
       }
     };
@@ -59,12 +55,12 @@ async function getPackages(page = 1, limit = 10, type?: string) {
   }
 }
 
-export default async function PackagesServerPage({
-  searchParams,
-}: {
-  searchParams: { page?: string; type?: string };
-}) {
-  const page = Number(searchParams.page) || 1;
-  const { packages, metadata } = await getPackages(page, 10, searchParams.type);
-  return <PackagesPage initialPackages={packages} metadata={metadata} />;
+export default async function PackagesServerPage() {
+  const { packages, metadata } = await getPackages();
+  
+  return (
+    <Suspense fallback={<Loading />}>
+      <PackagesPage initialPackages={packages} metadata={metadata} />
+    </Suspense>
+  );
 }

@@ -49,7 +49,7 @@ export default async function DestinationsPage() {
                 Your Gateway to African Adventures
               </span>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-2 sm:mb-3 md:mb-4 leading-tight">
-                Explore <span className="text-orange-400">our</span> destinations
+                Travel <span className="text-orange-400">with</span> us
               </h1>
             </div>
           </div>
