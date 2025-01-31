@@ -3,6 +3,7 @@ import Image from "next/image"
 import { getDestinations } from "@/lib/db"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {  MapPin } from 'lucide-react'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default async function DestinationsPage() {
   
   return (
     <div className="bg-gray-50">
-      {/* Hero Banner - Enhanced Responsiveness */}
+      {/* Hero Banner */}
       <div className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] w-full overflow-hidden">
         <Image
           src="/images/destinations.jpeg"
@@ -56,52 +57,65 @@ export default async function DestinationsPage() {
         </div>
       </div>
 
-      {/* Destinations Section - Enhanced Responsiveness */}
+      {/* Destinations Section */}
       <div className="container mx-auto py-8 sm:py-10 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 lg:px-12">
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-5 md:mb-6 text-center">
           <span className="text-amber-600 font-sans">Explore </span>Destinations
         </h2>
-        <div className="w-16 sm:w-20 md:w-24 h-1 bg-amber-600 mx-auto mb-4 sm:mb-5 md:mb-6" />
+        <div className="w-16 sm:w-20 md:w-24 h-1 bg-amber-600 mx-auto mb-8 sm:mb-10" />
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {destinations.map((destination) => (
             <Card 
               key={destination.id} 
-              className="flex flex-col shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300"
             >
               <CardHeader className="p-0">
-                <div className="relative w-full h-40 sm:h-44 md:h-48 lg:h-52 xl:h-56">
+                <div className="relative w-full h-56 sm:h-60 md:h-64">
                   <Image
                     src={destination.imageData || "/placeholder.svg"}
                     alt={destination.name}
                     fill
-                    className="object-cover rounded-t-lg"
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div className="absolute top-2 sm:top-3 right-2 sm:right-3 bg-orange-500 font-sans text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
-                    KES {destination.amount.toLocaleString()}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-orange-600 px-3 py-1.5 rounded-full text-sm font-semibold">
+                    </div>
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="flex-grow p-3 sm:p-4">
-                <CardTitle className="text-lg sm:text-xl md:text-xl lg:text-xl font-bold mb-1 sm:mb-2 text-gray-800">
-                  {destination.name}
-                </CardTitle>
-                <div className="flex items-center text-xs sm:text-sm text-gray-600 capitalize">
-                  <svg className="w-3 sm:w-4 h-3 sm:h-4 mr-1 sm:mr-2 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                  </svg>
-                  {destination.locations[0]}
+
+              <CardContent className="flex-grow p-4">
+                <div className="space-y-3">
+                  <CardTitle className="text-xl font-bold text-gray-800">
+                    {destination.name}
+                  </CardTitle>
+                  
+                  <div className="flex items-center text-gray-600">
+                    <MapPin className="w-4 h-4 mr-1.5 text-orange-500" />
+                    <span className="text-sm capitalize">{destination.locations[0]}</span>
+                  </div>
+
+                  <div className="flex items-baseline space-x-1 font-sans capitalize">
+                    <span className=" text-gray-500">From</span>
+                    <span className=" font-bold text-gray-900">
+                      KES {destination.amount.toLocaleString()}
+                    </span>
+                    <span className="text-gray-500">Per Person</span>
+                  </div>
                 </div>
               </CardContent>
-              <CardFooter className="p-3 sm:p-4">
+
+              <CardFooter className="p-4 pt-0">
                 <Link 
                   href={`/destinations/${destination.name.toLowerCase().replace(/ /g, "-")}`} 
-                  passHref
                   className="w-full"
                 >
-                  <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs sm:text-sm md:text-base">
-                    Explore Destination
+                  <Button 
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-white font-medium"
+                  >
+                    EXPLORE
                   </Button>
                 </Link>
               </CardFooter>

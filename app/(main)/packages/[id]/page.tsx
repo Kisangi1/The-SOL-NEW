@@ -121,7 +121,7 @@ export default async function PackagePage({ params }: { params: { id: string } }
                 </div>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center font-sans">
                 <DollarSign className="w-8 h-8 text-amber-600 mr-4" />
                 <div>
                   <p className="text-gray-600 font-medium ">Price</p>

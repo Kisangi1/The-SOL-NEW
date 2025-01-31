@@ -133,7 +133,7 @@ export default async function DestinationPage({ params }: { params: { slug: stri
                 </div>
               </div>
 
-              <div className="mt-6 text-center">
+              <div className="mt-6 text-center font-sans">
                 <p className="text-3xl font-bold text-orange-600 mb-4 font-sans">
                   KES {destination.amount.toLocaleString()}/-
                 </p>
