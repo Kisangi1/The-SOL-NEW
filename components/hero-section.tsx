@@ -3,67 +3,57 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { MoveUpRight } from 'lucide-react'
-import ScrollIndicator from '@/components/scroll-indicator'
 
-// Define the structure of a carousel item
+
 interface CarouselItem {
   image: string
   title: string
   subtitle: string
   link: string
+  price?: string
+  tag?: string
 }
 
-// Carousel data
 const carouselItems: CarouselItem[] = [
   {
     image: '/images/one.jpg',
-    title: 'Rhino Adventures',
-    subtitle: 'Conquer Peaks, Create Memories',
+    title: '2025 Mombasa Diani Malindi Watamu Packages',
+    subtitle: 'From KES 16,000 Per Person Sharing',
+    tag: 'FEATURED TRAVEL',
     link: '/packages'
   },
   {
     image: '/images/two.jpg',
     title: 'Mountain Expeditions',
-    subtitle: 'Explore mt kilimanjaro and its wildlife',
+    subtitle: 'From KES 25,000 Per Person',
+    tag: 'FEATURED TRAVEL',
     link: '/packages'
   },
   {
     image: '/images/three.jpg',
     title: 'Gazelle Adventures',
-    subtitle: 'Luxury Adventures and Unforgettable Moments',
+    subtitle: 'From KES 20,000 Per Person',
+    tag: 'FEATURED TRAVEL',
     link: '/packages'
   },
   {
     image: '/images/four.jpg',
     title: 'Coastal Experiences',
-    subtitle: 'Luxury Adventures and Unforgettable Moments',
+    subtitle: 'From KES 18,000 Per Person',
+    tag: 'FEATURED TRAVEL',
     link: '/packages'
   }
 ]
 
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true)
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselItems.length)
-    }, 5000) 
-
-    const handleScroll = () => {
-      if (window.scrollY > 100) { // Hide after 100px of scrolling
-        setShowScrollIndicator(false)
-      } else {
-        setShowScrollIndicator(true)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
+    }, 5000)
 
     return () => {
       clearInterval(interval)
-      window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
@@ -71,59 +61,94 @@ export default function HeroCarousel() {
   const nextItem = carouselItems[(currentSlide + 1) % carouselItems.length]
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-gray-900">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center transition-all duration-500 ease-in-out"
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
+      {/* Background Image with Gradient Overlay */}
+      <motion.div 
+        key={currentSlide}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+        className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${currentItem.image})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundImage: `url(${currentItem.image})`
         }}
       >
-        {/* Overlay to improve text readability */}
-        <div className="absolute inset-0 bg-black/40"></div>
-      </div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+      </motion.div>
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-center items-start text-white">
+      <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-end pb-32 text-white">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -50 }}
+            exit={{ opacity: 0, y: -30 }}
             transition={{ 
-              type: 'tween',
-              duration: 0.6
+              duration: 0.8,
+              ease: "easeOut"
             }}
-            className="max-w-3xl space-y-4"
+            className="space-y-4"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 tracking-tight">
-              {currentItem.title}
-            </h1>
-            
-            <p className="text-lg sm:text-xl md:text-2xl mb-6 max-w-2xl opacity-90">
-              {currentItem.subtitle}
-            </p>
-            
-            <Link 
-              href={currentItem.link}
-              className="inline-flex items-center bg-orange-600 hover:bg-orange-700 text-white px-5 py-3 sm:px-6 sm:py-3 rounded-lg transition duration-300 group/link"
+            <motion.span 
+              className="inline-block text-sm font-medium tracking-wider mb-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.9 }}
+              transition={{ delay: 0.2 }}
             >
-              View Destinations
-              <MoveUpRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5 transition group-hover/link:translate-x-1 group-hover/link:-translate-y-1" />
-            </Link>
+              {currentItem.tag}
+            </motion.span>
+
+            <motion.h1 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              {currentItem.title}
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl sm:text-2xl opacity-90 max-w-2xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              {currentItem.subtitle}
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              <Link 
+                href={currentItem.link}
+                className="inline-block bg-green-800 hover:bg-green-700 text-white px-6 py-3 rounded text-lg font-medium transition duration-300 mt-4"
+              >
+                LEARN MORE
+              </Link>
+            </motion.div>
           </motion.div>
         </AnimatePresence>
+
+        {/* Slide indicators */}
+        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2">
+          {carouselItems.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                index === currentSlide ? 'bg-white scale-125' : 'bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 sm:bottom-12 lg:bottom-16 left-1/2 -translate-x-1/2 z-20">
-        <ScrollIndicator isVisible={showScrollIndicator} />
-      </div>
-
-      {/* Preload Next Background (hidden) */}
+      {/* Preload next image */}
       <div 
         className="hidden"
         style={{
