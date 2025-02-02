@@ -217,7 +217,6 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
             id="amount"
             name="amount"
             required
-            min="0"
             value={formData.amount}
             onChange={handleChange}
             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500"
