@@ -3,7 +3,8 @@ const nextConfig = {
     images: {
         domains: [
             'images.unsplash.com', 
-            'cms.travelworld.nl'
+            'cms.travelworld.nl',
+              'res.cloudinary.com'
         ],
     },
 };

@@ -50,36 +50,35 @@ model Destination {
 }
 
 model Package {
-  id            String   @id @default(cuid())
+  id            String      @id @default(cuid())
   name          String
-  description   String
-  imageData     String?
+  details       String
+  type          PackageType
+  customType    String?
   amount        Float
-  numberOfDays  Int
-  dayOrNight    String
-  type          String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  included      String[]
+  excluded      String[]
+  duration      Int
+  nights        Int
+  imageUrl      String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   bookings      Booking[]
-   @@index([type])
-  @@index([createdAt])
-
 }
 
-
 model Booking {
-  id            String   @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String
   email         String
   startDate     DateTime
   endDate       DateTime
   message       String?
-  status        Status   @default(PENDING)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  status        Status       @default(PENDING)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
   destination   Destination? @relation(fields: [destinationId], references: [id])
   destinationId String?
-  package       Package?    @relation(fields: [packageId], references: [id])
+  package       Package?     @relation(fields: [packageId], references: [id])
   packageId     String?
 }
 
@@ -117,5 +116,7 @@ enum PackageType {
   MADARAKA
   WEEKEND
   HONEYMOON
+  BEACH
+  OTHER
+  
 }
-

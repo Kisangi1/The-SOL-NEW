@@ -1,87 +1,109 @@
-import { NextResponse } from "next/server"
-import { auth, currentUser } from "@clerk/nextjs/server"
-import { prisma } from "@/lib/db"
 
-// Public GET endpoint - /api/packages/[id]
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+import { prisma } from "@/lib/db";
+import { uploadImage } from "@/lib/uploadImage";
+import { PackageType } from "@prisma/client";
+
+export async function PATCH(
+  req: Request,
+  { params }: { params: { id: string } }  // Change from packageId to id
+) {
   try {
-    const id = params.id
-    const packageData = await prisma.package.findUnique({
-      where: { id },
-    })
-
-    if (!packageData) {
-      return NextResponse.json({ error: "Package not found" }, { status: 404 })
-    }
-
-    return NextResponse.json(packageData)
-  } catch (error) {
-    console.error("Error fetching package:", error)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
-  }
-}
-
-// Protected PUT endpoint - /api/packages/[id]
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
-  try {
-    const { userId } = await auth()
-
+    const { userId } = await auth();
     if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+      return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const user = await currentUser()
+    const formData = await req.formData();
+    const name = formData.get("name") as string;
+    const details = formData.get("details") as string;
+    const type = formData.get("type") as keyof typeof PackageType;
+    const customType = formData.get("customType") as string;
+    const amount = Number(formData.get("amount"));
+    const included = JSON.parse(formData.get("included") as string);
+    const excluded = JSON.parse(formData.get("excluded") as string);
+    const duration = Number(formData.get("duration"));
+    const nights = Number(formData.get("nights"));
+    const image = formData.get("image") as File | null;
 
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 })
+    if (!name || !details || !type || !amount || !duration || !nights) {
+      return new NextResponse("Missing required fields", { status: 400 });
     }
 
-    const id = params.id
-    const { name, description, imageData, amount, numberOfDays, dayOrNight, type } = await request.json()
-
-    if (!name || !description || !amount || !numberOfDays || !dayOrNight || !type) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
+    let imageUrl;
+    if (image) {
+      imageUrl = await uploadImage(image);
     }
 
-    const updatedPackage = await prisma.package.update({
-      where: { id },
+    const packageData = await prisma.package.update({
+      where: { id: params.id },  // Change from params.packageId to params.id
       data: {
         name,
-        description,
-        imageData,
-        amount: Number(amount),
-        numberOfDays: Number(numberOfDays),
-        dayOrNight,
-        type,
+        details,
+        type: PackageType[type],
+        customType: type === "OTHER" ? customType : undefined,
+        amount,
+        included,
+        excluded,
+        duration,
+        nights,
+        ...(imageUrl && { imageUrl }),
       },
-    })
+    });
 
-    return NextResponse.json(updatedPackage)
+    return NextResponse.json(packageData);
   } catch (error) {
-    console.error("Error updating package:", error)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    console.error("[PACKAGE_PATCH]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
 
-// Protected DELETE endpoint - /api/packages/[id]
-export async function DELETE(request: Request, { params }: { params: { id: string } }) {
+export async function GET(
+  req: Request,
+  { params }: { params: { packageId: string } }
+) {
   try {
-    const { userId } = await auth()
+    const packageData = await prisma.package.findUnique({
+      where: { id: params.packageId },
+    });
 
-    if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    if (!packageData) {
+      return new NextResponse("Package not found", { status: 404 });
     }
 
-    const id = params.id
-
-    await prisma.package.delete({
-      where: { id },
-    })
-
-    return NextResponse.json({ message: "Package deleted successfully" })
+    return NextResponse.json(packageData);
   } catch (error) {
-    console.error("Error deleting package:", error)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    console.error("[PACKAGE_GET]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
 
+// app/api/packages/[id]/route.ts
+export async function DELETE(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const { userId } = await auth();
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    if (!params.id) {
+      return new NextResponse("Package ID is required", { status: 400 });
+    }
+
+    const packageData = await prisma.package.delete({
+      where: { id: params.id },
+    });
+
+    return NextResponse.json(packageData);
+  } catch (error) {
+    console.error("[PACKAGE_DELETE]", error);
+    if ((error as { code?: string }).code === 'P2025') {
+      return new NextResponse("Package not found", { status: 404 });
+    }
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
