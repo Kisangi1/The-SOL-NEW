@@ -87,9 +87,7 @@ export default function AboutPageComponent () {
               Crafting Unforgettable African Adventures
             </h2>
             <p className="text-base sm:text-lg text-gray-600">
-              Since our inception, Sol of African Tours has been dedicated to showcasing 
-              the authentic spirit of Africa. We combine luxury with adventure, creating 
-              journeys that touch the heart and soul of this magnificent continent.
+            Sol of African, is a premier tour and travel company for those who want to experience the best that Africa has to offer. We specialize in creating customized trips that allow you to explore and discover the beauty of East Africa&apos;s nature, wildlife, and culture. Our tours are tailored to meet your interests and preferences, and we work tirelessly to ensure your trip is nothing short of extraordinary. Let us help you create lasting memories and fall in love with everything Africa offers.
             </p>
           </div>
 
