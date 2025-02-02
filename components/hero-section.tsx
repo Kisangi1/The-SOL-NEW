@@ -17,7 +17,7 @@ interface CarouselItem {
 const carouselItems: CarouselItem[] = [
   {
     image: '/images/one.jpg',
-    title: '2025 Mombasa Diani Malindi Watamu Packages',
+    title: 'Explore Park Experiences',
     subtitle: 'From KES 16,000 Per Person Sharing',
     tag: 'FEATURED TRAVEL',
     link: '/packages'
@@ -31,7 +31,7 @@ const carouselItems: CarouselItem[] = [
   },
   {
     image: '/images/three.jpg',
-    title: 'Gazelle Adventures',
+    title: 'Explore Park Adventures',
     subtitle: 'From KES 20,000 Per Person',
     tag: 'FEATURED TRAVEL',
     link: '/packages'
@@ -61,7 +61,7 @@ export default function HeroCarousel() {
   const nextItem = carouselItems[(currentSlide + 1) % carouselItems.length]
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden font-sans">
       {/* Background Image with Gradient Overlay */}
       <motion.div 
         key={currentSlide}
@@ -79,7 +79,7 @@ export default function HeroCarousel() {
       </motion.div>
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 h-full flex flex-col justify-end pb-32 text-white">
+      <div className="relative z-10 container mx-auto px-6 h-full font-sans flex flex-col justify-end pb-32 text-white">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -126,7 +126,7 @@ export default function HeroCarousel() {
             >
               <Link 
                 href={currentItem.link}
-                className="inline-block bg-green-800 hover:bg-green-700 text-white px-6 py-3 rounded text-lg font-medium transition duration-300 mt-4"
+                className="inline-block bg-amber-800 hover:bg-amber-700 text-white px-6 py-3 rounded text-lg font-medium transition duration-300 mt-4"
               >
                 LEARN MORE
               </Link>
