@@ -4,10 +4,5 @@
       "path": "/api/keep-alive",
       "schedule": "0 5 * * 0,3,5"
     }
-  ],
-  "functions": {
-    "api/packages": {
-      "maxDuration": 30
-    }
-  }
+  ]
 }
