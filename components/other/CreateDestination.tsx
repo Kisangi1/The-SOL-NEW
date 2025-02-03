@@ -77,7 +77,7 @@ export function CreateDestinationForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 font-sans">
       <div>
         <Label htmlFor="name">Name</Label>
         <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />

@@ -56,7 +56,7 @@ export default function AboutPageComponent () {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen font-sans">
       {/* Hero Section */}
       <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden">
         <Image
@@ -79,7 +79,7 @@ export default function AboutPageComponent () {
       </div>
 
       {/* Our Story Section */}
-      <section className="py-16 sm:py-20 bg-gradient-to-b from-orange-50 to-white">
+      <section className="py-16 sm:py-20 bg-gradient-to-b from-orange-50 to-white font-sans">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <span className="text-orange-600 font-semibold">Our Journey</span>

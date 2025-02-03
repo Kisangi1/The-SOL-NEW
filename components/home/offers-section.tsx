@@ -44,7 +44,7 @@ export function BlogsSection() {
   // Rendering skeletons for loading state
   if (isLoading) {
     return (
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-gray-50 font-sans">
         <div className="container mx-auto px-4">
         <div className="inline-flex items-center rounded-full bg-amber-600  px-4 py-1 text-sm text-white">
             Get the  latest blogs

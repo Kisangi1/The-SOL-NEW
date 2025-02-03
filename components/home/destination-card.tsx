@@ -1,15 +1,19 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import Link from 'next/link';
+import Link from 'next/link'
 
 interface DestinationCardProps {
   image: string
   title: string
   price: number
-  location: string
+  location?: string
 }
 
-export function DestinationCard({ image, title, price }: DestinationCardProps) {
+export function DestinationCard({ 
+  image, 
+  title, 
+  price, 
+}: DestinationCardProps) {
   return (
     <div className="group relative overflow-hidden rounded-lg">
       <Image
@@ -23,16 +27,15 @@ export function DestinationCard({ image, title, price }: DestinationCardProps) {
         <h3 className="text-lg font-semibold text-white">{title}</h3>
         <div className="mt-2 flex items-center justify-between font-sans">
           <p className="text-sm text-white capitalize">
-            kes. {price} 
+            kes. {price}
           </p>
-          <Link href="/destinations">
-      <Button variant="secondary" size="sm">
-        View Details
-      </Button>
-    </Link>
+          <Link href={`/packages/${title.toLowerCase().replace(/\s+/g, '-')}`}>
+            <Button variant="secondary" size="sm">
+              View Details
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
   )
 }
-

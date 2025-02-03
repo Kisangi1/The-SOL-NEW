@@ -39,7 +39,7 @@ export default function FeaturesSection() {
   ];
 
   return (
-    <section className="py-12 md:py-20 bg-gray-50">
+    <section className="py-12 md:py-20 bg-gray-50 font-sans">
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
           <div className="w-full lg:w-1/2 space-y-6 md:space-y-8">
@@ -47,8 +47,8 @@ export default function FeaturesSection() {
               Discover Africa
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
-              Experience the Magic <br className="hidden md:block" />
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight font-sans">
+              Experience the magic <br className="hidden md:block" />
               of African Wilderness
             </h2>
             

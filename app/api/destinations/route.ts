@@ -1,54 +1,77 @@
-import { NextResponse } from "next/server"
-import { auth, currentUser } from "@clerk/nextjs/server"
-import { getDestinations, createDestination } from "@/lib/db"
+// app/api/destinations/route.ts
+import { NextResponse } from "next/server";
+import { auth } from "@clerk/nextjs/server";
+import { prisma } from "@/lib/db";
+import { uploadImage } from "@/lib/uploadImage";
 
-// Public GET endpoint - /api/destinations
-export async function GET() {
+export async function POST(req: Request) {
   try {
-    const destinations = await getDestinations()
-    return NextResponse.json(destinations)
+    const { userId } = await auth();
+    if (!userId) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const formData = await req.formData();
+    const name = formData.get("name") as string;
+    const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
+    const bestTimeToTravel = formData.get("bestTimeToTravel") as string;
+    const whatToCarry = JSON.parse(formData.get("whatToCarry") as string);
+    const location = formData.get("location") as string;
+    const image = formData.get("image") as File;
+
+    if (!name || !title || !description || !bestTimeToTravel || !location) {
+      return new NextResponse("Missing required fields", { status: 400 });
+    }
+
+    let imageUrl = "";
+    if (image) {
+      imageUrl = await uploadImage(image);
+    }
+
+    const destination = await prisma.destination.create({
+      data: {
+        name,
+        title,
+        description,
+        bestTimeToTravel,
+        whatToCarry,
+        location,
+        imageUrl,
+      },
+    });
+
+    return NextResponse.json(destination);
   } catch (error) {
-    console.error("Error fetching destinations:", error)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    console.error("[DESTINATIONS_POST]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
 
-// Protected POST endpoint - /api/destinations
-export async function POST(request: Request) {
+export async function GET(req: Request) {
   try {
-    const { userId } = await auth()
+    const { searchParams } = new URL(req.url);
+    const page = Number(searchParams.get("page")) || 1;
+    const pageSize = 9;
+    const skip = (page - 1) * pageSize;
 
-    if (!userId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+    const [destinations, total] = await Promise.all([
+      prisma.destination.findMany({
+        orderBy: { createdAt: "desc" },
+        take: pageSize,
+        skip,
+      }),
+      prisma.destination.count(),
+    ]);
 
-    const user = await currentUser()
-
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 })
-    }
-
-    const { name, description, imageData, locations, inclusive, exclusive, amount, whatToCarry } = await request.json()
-
-    if (!name || !description || !amount) {
-      return NextResponse.json({ error: "Name, description, and amount are required" }, { status: 400 })
-    }
-
-    const newDestination = await createDestination({
-      name,
-      description,
-      imageData,
-      locations,
-      inclusive,
-      exclusive,
-      amount,
-      whatToCarry,
-    })
-
-    return NextResponse.json(newDestination, { status: 201 })
+    return NextResponse.json({
+      destinations,
+      total,
+      totalPages: Math.ceil(total / pageSize),
+    });
   } catch (error) {
-    console.error("Error creating destination:", error)
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
+    console.error("[DESTINATIONS_GET]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
 

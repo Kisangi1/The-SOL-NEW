@@ -11,7 +11,7 @@ export function CategoriesSection() {
   ]
 
   return (
-    <section className="py-16">
+    <section className="py-16 font-sans">
       <div className="container mx-auto px-4">
       <div className="inline-flex items-center rounded-full bg-green-100 px-4 py-1 text-sm text-green-600">
              We belive in freedom

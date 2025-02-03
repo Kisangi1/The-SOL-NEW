@@ -1,13 +1,13 @@
-import { SignedIn } from "@clerk/nextjs"
-import { ManageDestinations } from "@/components/other/ManageDestinations"
+import { auth } from "@clerk/nextjs/server"
+import { redirect } from "next/navigation"
+import ManageDestinationsClient from "@/components/other/ManageDestinations"
 
-export default function ManageDestinationsPage() {
-  return (
-    <SignedIn>
-      <div className="container mx-auto py-8">
-        <ManageDestinations />
-      </div>
-    </SignedIn>
-  )
+export default async function ManageDestinationsPage() {
+  const { userId } = await auth()
+  
+  if (!userId) {
+    redirect("/sign-in")
+  }
+
+  return <ManageDestinationsClient />
 }
-

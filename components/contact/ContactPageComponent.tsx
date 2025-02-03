@@ -95,7 +95,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
+    <section className="min-h-screen bg-gradient-to-b from-orange-50 to-white font-sans">
       {/* Enhanced Banner Section */}
       <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] w-full overflow-hidden">
         <Image

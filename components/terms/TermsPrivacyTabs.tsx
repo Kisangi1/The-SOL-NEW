@@ -25,7 +25,7 @@ export const TermsPrivacyTabs = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 mb-8">
+      <div className="grid grid-cols-2 gap-4 mb-8 font-sans">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           return (

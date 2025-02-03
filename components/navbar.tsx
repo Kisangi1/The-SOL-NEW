@@ -64,15 +64,15 @@ const Navbar = () => {
                       <div>
                         <h3 className="font-medium text-orange-500 mb-2">Popular Destinations</h3>
                         <ul className="grid grid-cols-2 gap-2">
-                          <li><Link href="/destinations/masai-mara" className="flex items-center text-sm hover:text-orange-500">Masai Mara <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/nairobi-park" className="flex items-center text-sm hover:text-orange-500">Nairobi National Park <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/amboseli" className="flex items-center text-sm hover:text-orange-500">Amboseli <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/watamu" className="flex items-center text-sm hover:text-orange-500">Watamu <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/diani" className="flex items-center text-sm hover:text-orange-500">Diani<ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/samburu" className="flex items-center text-sm hover:text-orange-500">Samburu <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/serengeti" className="flex items-center text-sm hover:text-orange-500">Serengeti <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/arusha" className="flex items-center text-sm hover:text-orange-500">Arusha <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
-                          <li><Link href="/destinations/zanzibar" className="flex items-center text-sm hover:text-orange-500">Zanzibar <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/masai-mara" className="flex items-center text-sm hover:text-orange-500">Masai Mara <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/nairobi-park" className="flex items-center text-sm hover:text-orange-500">Nairobi National Park <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/amboseli" className="flex items-center text-sm hover:text-orange-500">Amboseli <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/watamu" className="flex items-center text-sm hover:text-orange-500">Watamu <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/diani" className="flex items-center text-sm hover:text-orange-500">Diani<ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/samburu" className="flex items-center text-sm hover:text-orange-500">Samburu <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/serengeti" className="flex items-center text-sm hover:text-orange-500">Serengeti <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/arusha" className="flex items-center text-sm hover:text-orange-500">Arusha <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
+                          <li><Link href="/zanzibar" className="flex items-center text-sm hover:text-orange-500">Zanzibar <ChevronRight className="h-4 w-4 ml-auto" /></Link></li>
                         </ul>
                       </div>
                     </div>
@@ -159,15 +159,15 @@ const MobileNav = ({ onClose }: { onClose: () => void }) => {
           {destinationsOpen && (
             <div className="ml-4 space-y-2 mt-2">
               <ul className="space-y-2">
-                <li><Link href="/destinations/masai-mara" className="block text-sm hover:text-orange-500" onClick={onClose}>Masai Mara</Link></li>
-                <li><Link href="/destinations/nairobi-park" className="block text-sm hover:text-orange-500" onClick={onClose}>Nairobi National Park</Link></li>
-                <li><Link href="/destinations/amboseli" className="block text-sm hover:text-orange-500" onClick={onClose}>Amboseli</Link></li>
-                <li><Link href="/destinations/samburu" className="block text-sm hover:text-orange-500" onClick={onClose}>Samburu</Link></li>
-                <li><Link href="/destinations/watamu" className="block text-sm hover:text-orange-500" onClick={onClose}>Watamu</Link></li>
-                <li><Link href="/destinations/diani" className="block text-sm hover:text-orange-500" onClick={onClose}>Diani</Link></li>
-                <li><Link href="/destinations/serengeti" className="block text-sm hover:text-orange-500" onClick={onClose}>Serengeti</Link></li>
-                <li><Link href="/destinations/arusha" className="block text-sm hover:text-orange-500" onClick={onClose}>Arusha</Link></li>
-                <li><Link href="/destinations/zanzibar" className="block text-sm hover:text-orange-500" onClick={onClose}>Zanzibar</Link></li>
+                <li><Link href="/masai-mara" className="block text-sm hover:text-orange-500" onClick={onClose}>Masai Mara</Link></li>
+                <li><Link href="/nairobi-park" className="block text-sm hover:text-orange-500" onClick={onClose}>Nairobi National Park</Link></li>
+                <li><Link href="/amboseli" className="block text-sm hover:text-orange-500" onClick={onClose}>Amboseli</Link></li>
+                <li><Link href="/samburu" className="block text-sm hover:text-orange-500" onClick={onClose}>Samburu</Link></li>
+                <li><Link href="/watamu" className="block text-sm hover:text-orange-500" onClick={onClose}>Watamu</Link></li>
+                <li><Link href="/diani" className="block text-sm hover:text-orange-500" onClick={onClose}>Diani</Link></li>
+                <li><Link href="/serengeti" className="block text-sm hover:text-orange-500" onClick={onClose}>Serengeti</Link></li>
+                <li><Link href="/arusha" className="block text-sm hover:text-orange-500" onClick={onClose}>Arusha</Link></li>
+                <li><Link href="/zanzibar" className="block text-sm hover:text-orange-500" onClick={onClose}>Zanzibar</Link></li>
               </ul>
             </div>
           )}

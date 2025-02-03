@@ -34,20 +34,6 @@ model Blog {
   category   String?
 }
 
-model Destination {
-  id          String   @id @default(cuid())
-  name        String
-  description String
-  imageData   String?
-  locations   String[]
-  inclusive   String[]
-  exclusive   String[]
-  amount      Float
-  whatToCarry String[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  bookings    Booking[]
-}
 
 model Package {
   id            String      @id @default(cuid())
@@ -66,6 +52,22 @@ model Package {
   bookings      Booking[]
 }
 
+
+
+model Destination {
+  id            String   @id @default(cuid())
+  name          String
+  title         String
+  description   String
+  bestTimeToTravel String
+  whatToCarry   String[]
+  imageUrl      String?
+  location      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  bookings      Booking[]
+}
+
 model Booking {
   id            String       @id @default(cuid())
   name          String
@@ -76,10 +78,10 @@ model Booking {
   status        Status       @default(PENDING)
   createdAt     DateTime     @default(now())
   updatedAt     DateTime     @updatedAt
-  destination   Destination? @relation(fields: [destinationId], references: [id])
-  destinationId String?
   package       Package?     @relation(fields: [packageId], references: [id])
   packageId     String?
+  destination   Destination? @relation(fields: [destinationId], references: [id])
+  destinationId String?
 }
 
 model KeepAlive {

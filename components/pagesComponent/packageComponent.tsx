@@ -148,7 +148,7 @@ const PackagesPage = ({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 font-sans">
       {/* Hero Section */}
       <div className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-[60vh] xl:h-[70vh] w-full overflow-hidden">
         <Image
