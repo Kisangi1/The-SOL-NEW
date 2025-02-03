@@ -38,7 +38,7 @@ const carouselItems: CarouselItem[] = [
   },
   {
     image: '/images/four.jpg',
-    title: 'Coastal Experiences',
+    title: 'Coastal Vibes',
     subtitle: 'From KES 18,000 Per Person',
     tag: 'FEATURED TRAVEL',
     link: '/packages'
@@ -61,7 +61,7 @@ export default function HeroCarousel() {
   const nextItem = carouselItems[(currentSlide + 1) % carouselItems.length]
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden font-sans">
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden ">
       {/* Background Image with Gradient Overlay */}
       <motion.div 
         key={currentSlide}
