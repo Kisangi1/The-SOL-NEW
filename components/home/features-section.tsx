@@ -87,7 +87,7 @@ export default function FeaturesSection() {
                     <p className="text-lg font-semibold">Serengeti Safari</p>
                     <p className="text-amber-600 font-sans">Kilimanjaro and wildlife await.</p>
                   </div>
-                  <Link href="destinations/serengeti">
+                  <Link href="/serengeti">
                     <Button size="sm" className="w-full sm:w-auto bg-amber-600 hover:bg-amber-700">
                       Book Now
                     </Button>

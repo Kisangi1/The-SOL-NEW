@@ -1,8 +1,7 @@
-// app/[destination]/page.tsx
 import { prisma } from "@/lib/db"
-import Image from "next/image"
-import { BookingForm } from "@/components/other/BookingForm"
 import { notFound } from "next/navigation"
+import Image from "next/image"
+import {BookingForm} from "@/components/other/BookingForm"
 
 export async function generateStaticParams() {
   const destinations = await prisma.destination.findMany({
@@ -37,6 +36,7 @@ export default async function DestinationPage({
   if (!destination) {
     notFound()
   }
+
 
   return (
     <div className="container mx-auto px-4 py-8">
