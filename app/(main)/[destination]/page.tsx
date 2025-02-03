@@ -1,22 +1,22 @@
 import { prisma } from "@/lib/db"
 import { notFound } from "next/navigation"
 import Image from "next/image"
-import {BookingForm} from "@/components/other/BookingForm"
+import { BookingForm } from "@/components/other/BookingForm"
 
 export async function generateStaticParams() {
   const destinations = await prisma.destination.findMany({
     select: { name: true }
   })
-
+  
   return destinations.map((dest) => ({
     destination: dest.name.toLowerCase().replace(/\s+/g, '-')
   }))
 }
 
-export default async function DestinationPage({ 
-  params 
-}: { 
-  params: { destination: string } 
+export default async function DestinationPage({
+  params
+}: {
+  params: { destination: string }
 }) {
   // Convert URL param back to original name
   const destinationName = params.destination
@@ -25,11 +25,11 @@ export default async function DestinationPage({
     .join(' ')
 
   const destination = await prisma.destination.findFirst({
-    where: { 
-      name: { 
-        equals: destinationName, 
-        mode: 'insensitive' 
-      } 
+    where: {
+      name: {
+        equals: destinationName,
+        mode: 'insensitive'
+      }
     }
   })
 
@@ -37,23 +37,21 @@ export default async function DestinationPage({
     notFound()
   }
 
-
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Hero Banner Similar to Previous Example */}
-      <div className="relative h-[40vh] md:h-[50vh] lg:h-[60vh] w-full overflow-hidden mb-8">
+    <div className="min-h-screen w-full font-sans bg-amber-50 text-brown-900">
+      {/* Hero Banner - Responsive African-Inspired Banner */}
+      <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] w-full overflow-hidden">
         <Image
-          src={destination.imageUrl || "/images/destinations.jpeg"}
+          src={destination.imageUrl || "/images/african-landscape.jpeg"}
           alt={destination.name}
-          width={1920}
-          height={1080}
+          fill
           className="absolute inset-0 w-full h-full object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent">
-          <div className="container mx-auto h-full px-4">
-            <div className="flex flex-col justify-center h-full max-w-4xl">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent">
+          <div className="container mx-auto h-full px-4 flex items-center">
+            <div className="max-w-4xl">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight tracking-wide">
                 {destination.title}
               </h1>
             </div>
@@ -61,24 +59,38 @@ export default async function DestinationPage({
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Description</h2>
-          <p className="mb-6">{destination.description}</p>
+      <div className="container mx-auto px-4 py-12 sm:py-16 grid sm:grid-cols-1 md:grid-cols-2 gap-8 font-sans">
+        {/* Destination Details - African Inspired Layout */}
+        <div className="bg-amber-100 p-6 sm:p-8 rounded-xl shadow-lg">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-brown-800 border-b-2 border-brown-300 pb-2">
+            Description
+          </h2>
+          <p className="mb-6 text-brown-700 leading-relaxed">
+            {destination.description}
+          </p>
 
-          <h2 className="text-2xl font-bold mb-4">Best Time to Travel</h2>
-          <p className="mb-6">{destination.bestTimeToTravel}</p>
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-brown-800 border-b-2 border-brown-300 pb-2">
+            Best Time to Travel
+          </h2>
+          <p className="mb-6 text-brown-700 leading-relaxed">
+            {destination.bestTimeToTravel}
+          </p>
 
-          <h2 className="text-2xl font-bold mb-4">What to Carry</h2>
-          <ul className="list-disc pl-5">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-brown-800 border-b-2 border-brown-300 pb-2">
+            What to Carry
+          </h2>
+          <ul className="list-disc pl-5 text-brown-700 space-y-2">
             {destination.whatToCarry.map((item, index) => (
-              <li key={index}>{item}</li>
+              <li key={index} className="pl-2">{item}</li>
             ))}
           </ul>
         </div>
 
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Book Your Trip</h2>
+        {/* Booking Form - African Inspired Card */}
+        <div className="bg-amber-100 p-6 sm:p-8 rounded-xl shadow-lg">
+          <h2 className="text-xl sm:text-2xl font-bold mb-4 text-brown-800 border-b-2 border-brown-300 pb-2">
+            Book Your Adventure
+          </h2>
           <BookingForm destinationId={destination.id} />
         </div>
       </div>

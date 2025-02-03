@@ -77,7 +77,10 @@ export function BookingForm({ packageId, destinationId }: BookingFormProps) {
         <Label htmlFor="message">Message (Optional)</Label>
         <Textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} />
       </div>
-      <Button type="submit">Book Now</Button>
+      <Button type="submit" className="bg-amber-600 text-white hover:bg-amber-700">
+  Book Now
+</Button>
+
     </form>
   )
 }
