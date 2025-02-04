@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 
-
 interface CarouselItem {
   image: string
   title: string
@@ -16,28 +15,28 @@ interface CarouselItem {
 
 const carouselItems: CarouselItem[] = [
   {
-    image: '/images/one.jpg',
+    image: '/images/one.webp',
     title: 'Explore Park Experiences',
     subtitle: 'From KES 16,000 Per Person Sharing',
     tag: 'FEATURED TRAVEL',
     link: '/packages'
   },
   {
-    image: '/images/two.jpg',
+    image: '/images/two.webp',
     title: 'Mountain Expeditions',
     subtitle: 'From KES 25,000 Per Person',
     tag: 'FEATURED TRAVEL',
     link: '/packages'
   },
   {
-    image: '/images/three.jpg',
+    image: '/images/three.webp',
     title: 'Explore Park Adventures',
     subtitle: 'From KES 20,000 Per Person',
     tag: 'FEATURED TRAVEL',
     link: '/packages'
   },
   {
-    image: '/images/four.jpg',
+    image: '/images/four.webp',
     title: 'Coastal Vibes',
     subtitle: 'From KES 18,000 Per Person',
     tag: 'FEATURED TRAVEL',
@@ -47,6 +46,7 @@ const carouselItems: CarouselItem[] = [
 
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselItems.length)
@@ -61,7 +61,7 @@ export default function HeroCarousel() {
   const nextItem = carouselItems[(currentSlide + 1) % carouselItems.length]
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden ">
+    <section className="relative w-full h-screen min-h-[500px] max-h-[800px] overflow-hidden">
       {/* Background Image with Gradient Overlay */}
       <motion.div 
         key={currentSlide}
@@ -79,7 +79,7 @@ export default function HeroCarousel() {
       </motion.div>
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 h-full font-sans flex flex-col justify-end pb-32 text-white">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full font-sans flex flex-col justify-end pb-16 sm:pb-24 text-white">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
@@ -93,7 +93,7 @@ export default function HeroCarousel() {
             className="space-y-4"
           >
             <motion.span 
-              className="inline-block text-sm font-medium tracking-wider mb-2"
+              className="inline-block text-xs sm:text-sm font-medium tracking-wider mb-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.9 }}
               transition={{ delay: 0.2 }}
@@ -102,7 +102,7 @@ export default function HeroCarousel() {
             </motion.span>
 
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
@@ -111,7 +111,7 @@ export default function HeroCarousel() {
             </motion.h1>
             
             <motion.p 
-              className="text-xl sm:text-2xl opacity-90 max-w-2xl"
+              className="text-base sm:text-lg md:text-xl opacity-90 max-w-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
@@ -126,7 +126,7 @@ export default function HeroCarousel() {
             >
               <Link 
                 href={currentItem.link}
-                className="inline-block bg-amber-800 hover:bg-amber-700 text-white px-6 py-3 rounded text-lg font-medium transition duration-300 mt-4"
+                className="inline-block bg-amber-800 hover:bg-amber-700 text-white px-4 py-2 sm:px-6 sm:py-3 rounded text-sm sm:text-lg font-medium transition duration-300 mt-4"
               >
                 LEARN MORE
               </Link>
@@ -135,13 +135,13 @@ export default function HeroCarousel() {
         </AnimatePresence>
 
         {/* Slide indicators */}
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2">
+        <div className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2">
           {carouselItems.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentSlide ? 'bg-white scale-125' : 'bg-white/50'
+                index === currentSlide ? 'bg-white' : 'bg-white/50'
               }`}
             />
           ))}
