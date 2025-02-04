@@ -50,7 +50,7 @@ export default function HeroCarousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselItems.length)
-    }, 5000)
+    }, 6000) // Slightly longer interval for smoother transitions
 
     return () => {
       clearInterval(interval)
@@ -61,34 +61,39 @@ export default function HeroCarousel() {
   const nextItem = carouselItems[(currentSlide + 1) % carouselItems.length]
 
   return (
-    <section className="relative w-full h-screen min-h-[500px] max-h-[800px] overflow-hidden">
-      {/* Background Image with Gradient Overlay */}
-      <motion.div 
-        key={currentSlide}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1 }}
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: `url(${currentItem.image})`
-        }}
-      >
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-      </motion.div>
+    <section className="relative w-full h-screen min-h-[500px] max-h-[800px] overflow-hidden  bg-gray-900">
+      {/* Background Image with Soft Transition */}
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={currentSlide}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ 
+            duration: 1.5, 
+            ease: "easeInOut" 
+          }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url(${currentItem.image})`
+          }}
+        >
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+        </motion.div>
+      </AnimatePresence>
       
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 h-full font-sans flex flex-col justify-end pb-16 sm:pb-24 text-white">
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSlide}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
+            exit={{ opacity: 0, y: -50 }}
             transition={{ 
-              duration: 0.8,
-              ease: "easeOut"
+              duration: 1,
+              ease: "easeInOut"
             }}
             className="space-y-4"
           >
@@ -96,33 +101,49 @@ export default function HeroCarousel() {
               className="inline-block text-xs sm:text-sm font-medium tracking-wider mb-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.9 }}
-              transition={{ delay: 0.2 }}
+              transition={{ 
+                delay: 0.2, 
+                duration: 0.8,
+                ease: "easeOut" 
+              }}
             >
               {currentItem.tag}
             </motion.span>
 
             <motion.h1 
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight max-w-4xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                delay: 0.4, 
+                duration: 0.8,
+                ease: "easeOut" 
+              }}
             >
               {currentItem.title}
             </motion.h1>
             
             <motion.p 
               className="text-base sm:text-lg md:text-xl opacity-90 max-w-2xl"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                delay: 0.6, 
+                duration: 0.8,
+                ease: "easeOut" 
+              }}
             >
               {currentItem.subtitle}
             </motion.p>
             
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                delay: 0.8, 
+                duration: 0.8,
+                ease: "easeOut" 
+              }}
             >
               <Link 
                 href={currentItem.link}
