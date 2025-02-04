@@ -38,7 +38,7 @@ export default async function DestinationPage({
   }
 
   return (
-    <div className="min-h-screen w-full font-sans bg-amber-50 text-brown-900">
+    <div className="min-h-screen w-full font-sans bg-gradient-to-b from-orange-50 to-white  text-brown-900">
       {/* Hero Banner - Responsive African-Inspired Banner */}
       <div className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] w-full overflow-hidden">
         <Image
@@ -61,7 +61,7 @@ export default async function DestinationPage({
 
       <div className="container mx-auto px-4 py-12 sm:py-16 grid sm:grid-cols-1 md:grid-cols-2 gap-8 font-sans">
         {/* Destination Details - African Inspired Layout */}
-        <div className="bg-amber-100 p-6 sm:p-8 rounded-xl shadow-lg">
+        <div className="bg-gray-50 p-6 sm:p-8 rounded-xl shadow-lg">
           <h2 className="text-xl sm:text-2xl font-bold mb-4 text-brown-800 border-b-2 border-brown-300 pb-2">
             Description
           </h2>
@@ -87,7 +87,7 @@ export default async function DestinationPage({
         </div>
 
         {/* Booking Form - African Inspired Card */}
-        <div className="bg-amber-100 p-6 sm:p-8 rounded-xl shadow-lg">
+        <div className="bg-gray-50 p-6 sm:p-8 rounded-xl shadow-lg">
           <h2 className="text-xl sm:text-2xl font-bold mb-4 text-brown-800 border-b-2 border-brown-300 pb-2">
             Book Your Adventure
           </h2>
