@@ -52,7 +52,7 @@ export default function PackageDetails({ package: packageData }: PackageDetailsP
                   </span>
                   <span className="flex items-center gap-1 sm:gap-2 bg-black/30 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full">
                     <Blocks className="w-3 h-3 sm:w-4 sm:h-4 text-amber-300" />
-                    {packageData.type} Package
+                    {packageData.type} PACKAGE
                   </span>
                 </div>
               </div>
