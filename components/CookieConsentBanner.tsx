@@ -46,7 +46,7 @@ const CookieConsentBanner = () => {
                 onClick={handleDecline}
                 aria-label="Decline all cookies"
                 className="w-full sm:w-auto px-4  text-gray-900 py-2.5 text-sm border border-gray-900 rounded-md 
-                  hover:bg-gray-800  order-1 sm:order-none"
+                  hover:bg-gray-800 hover:text-white  order-1 sm:order-none"
               >
                 Decline All
               </button>

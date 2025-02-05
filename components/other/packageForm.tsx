@@ -20,9 +20,9 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
     details: packageData?.details || "",
     type: packageData?.type || PackageType.BEACH,
     customType: packageData?.customType || "",
-    amount: packageData?.amount || 0,
-    duration: packageData?.duration || 0,
-    nights: packageData?.nights || 0,
+    amount: packageData?.amount || "",
+    duration: packageData?.duration || "",
+    nights: packageData?.nights || "",
   });
 
   const [includedText, setIncludedText] = useState(
@@ -43,7 +43,10 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
     setIsLoading(true);
 
     try {
-      // Process included and excluded items into arrays
+      console.log("Submitting form data:", formData);
+      console.log("Included text:", includedText);
+      console.log("Excluded text:", excludedText);
+
       const included = includedText
         .split('\n')
         .map(item => item.trim())
@@ -60,19 +63,15 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
       
       const method = isEdit ? "PATCH" : "POST";
 
-      // Create FormData object
       const formDataToSend = new FormData();
       
-      // Add all form fields to FormData
       Object.entries(formData).forEach(([key, value]) => {
         formDataToSend.append(key, value.toString());
       });
 
-      // Add arrays as JSON strings
       formDataToSend.append('included', JSON.stringify(included));
       formDataToSend.append('excluded', JSON.stringify(excluded));
 
-      // Add image if selected
       if (image) {
         formDataToSend.append("image", image);
       }
@@ -83,7 +82,8 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorData = await response.text();
+        throw new Error(`HTTP error! status: ${response.status}, message: ${errorData}`);
       }
 
       toast.success(isEdit ? "Package updated successfully!" : "Package created successfully!");
@@ -92,7 +92,7 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
       
     } catch (error) {
       console.error("Error saving package:", error);
-      toast.error("Something went wrong!");
+      toast.error(error instanceof Error ? error.message : "Something went wrong!");
     } finally {
       setIsLoading(false);
     }
@@ -208,21 +208,23 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
           </div>
         )}
 
-        <div>
-          <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
-            Amount (KES)
-          </label>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            required
-            value={formData.amount}
-            onChange={handleChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500"
-            placeholder="Enter amount"
-          />
-        </div>
+<div>
+  <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
+    Amount (KES)
+  </label>
+  <input
+    type="number"
+    id="amount"
+    name="amount"
+    required
+    value={formData.amount}
+    onChange={handleChange}
+    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500"
+    placeholder="Enter amount"
+    min="0"
+    step="any"
+  />
+</div>
 
         <div>
           <label htmlFor="included" className="block text-sm font-medium text-gray-700">
@@ -270,21 +272,21 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
         </div>
 
         <div>
-          <label htmlFor="nights" className="block text-sm font-medium text-gray-700">
-            Nights
-          </label>
-          <input
-            type="number"
-            id="nights"
-            name="nights"
-            required
-            min="0"
-            value={formData.nights}
-            onChange={handleChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500"
-            placeholder="Enter number of nights"
-          />
-        </div>
+  <label htmlFor="nights" className="block text-sm font-medium text-gray-700">
+    Nights
+  </label>
+  <input
+    type="number"
+    id="nights"
+    name="nights"
+    required
+    min="0"
+    value={formData.nights}
+    onChange={handleChange}
+    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-amber-500 focus:outline-none focus:ring-amber-500"
+    placeholder="Enter number of nights"
+  />
+</div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700">

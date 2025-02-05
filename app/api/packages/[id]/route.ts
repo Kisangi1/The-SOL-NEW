@@ -1,4 +1,4 @@
-
+// app/api/packages/[id]/route.ts
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { prisma } from "@/lib/db";
@@ -7,7 +7,7 @@ import { PackageType } from "@prisma/client";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }  // Change from packageId to id
+  { params }: { params: { id: string } }
 ) {
   try {
     const { userId } = await auth();
@@ -16,38 +16,70 @@ export async function PATCH(
     }
 
     const formData = await req.formData();
-    const name = formData.get("name") as string;
-    const details = formData.get("details") as string;
-    const type = formData.get("type") as keyof typeof PackageType;
-    const customType = formData.get("customType") as string;
-    const amount = Number(formData.get("amount"));
-    const included = JSON.parse(formData.get("included") as string);
-    const excluded = JSON.parse(formData.get("excluded") as string);
-    const duration = Number(formData.get("duration"));
-    const nights = Number(formData.get("nights"));
+    console.log("Update form data:", Object.fromEntries(formData));
+
+    const name = formData.get("name");
+    const details = formData.get("details");
+    const type = formData.get("type");
+    const customType = formData.get("customType");
+    const amount = formData.get("amount");
+    const included = formData.get("included");
+    const excluded = formData.get("excluded");
+    const duration = formData.get("duration");
+    const nights = formData.get("nights");
     const image = formData.get("image") as File | null;
 
-    if (!name || !details || !type || !amount || !duration || !nights) {
-      return new NextResponse("Missing required fields", { status: 400 });
+    if (!name || typeof name !== "string") {
+      return new NextResponse("Invalid name", { status: 400 });
+    }
+    if (!details || typeof details !== "string") {
+      return new NextResponse("Invalid details", { status: 400 });
+    }
+    if (!type || !Object.values(PackageType).includes(type as PackageType)) {
+      return new NextResponse("Invalid package type", { status: 400 });
+    }
+    if (!amount || isNaN(Number(amount))) {
+      return new NextResponse("Invalid amount", { status: 400 });
+    }
+    if (!duration || isNaN(Number(duration))) {
+      return new NextResponse("Invalid duration", { status: 400 });
+    }
+    if (!nights || isNaN(Number(nights))) {
+      return new NextResponse("Invalid nights", { status: 400 });
+    }
+
+    let parsedIncluded: string[] = [];
+    let parsedExcluded: string[] = [];
+    
+    try {
+      parsedIncluded = included ? JSON.parse(included as string) : [];
+      parsedExcluded = excluded ? JSON.parse(excluded as string) : [];
+    } catch {
+      return new NextResponse("Invalid included/excluded format", { status: 400 });
     }
 
     let imageUrl;
     if (image) {
-      imageUrl = await uploadImage(image);
+      try {
+        imageUrl = await uploadImage(image);
+      } catch (error) {
+        console.error("Image upload failed:", error);
+        return new NextResponse("Image upload failed", { status: 400 });
+      }
     }
 
     const packageData = await prisma.package.update({
-      where: { id: params.id },  // Change from params.packageId to params.id
+      where: { id: params.id },
       data: {
         name,
         details,
-        type: PackageType[type],
-        customType: type === "OTHER" ? customType : undefined,
-        amount,
-        included,
-        excluded,
-        duration,
-        nights,
+        type: type as PackageType,
+        customType: type === PackageType.OTHER ? (customType as string) : undefined,
+        amount: Number(amount),
+        included: parsedIncluded,
+        excluded: parsedExcluded,
+        duration: Number(duration),
+        nights: Number(nights),
         ...(imageUrl && { imageUrl }),
       },
     });
@@ -61,11 +93,11 @@ export async function PATCH(
 
 export async function GET(
   req: Request,
-  { params }: { params: { packageId: string } }
+  { params }: { params: { id: string } }
 ) {
   try {
     const packageData = await prisma.package.findUnique({
-      where: { id: params.packageId },
+      where: { id: params.id },
     });
 
     if (!packageData) {
@@ -79,7 +111,6 @@ export async function GET(
   }
 }
 
-// app/api/packages/[id]/route.ts
 export async function DELETE(
   req: Request,
   { params }: { params: { id: string } }
