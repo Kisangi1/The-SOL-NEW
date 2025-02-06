@@ -64,7 +64,7 @@ export default async function PackagesPage({
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className="container mx-auto py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 font-sans">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
@@ -77,7 +77,7 @@ export default async function PackagesPage({
         </div>
 
         {/* Package Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 font-sans">
           <Suspense fallback={[...Array(9)].map((_, i) => <PackageCardSkeleton key={i} />)}>
             {packages.map((pkg) => (
               <Card 
@@ -107,7 +107,7 @@ export default async function PackagesPage({
                       {pkg.name}
                     </CardTitle>
                     
-                    <div className="flex flex-col space-y-2.5">
+                    <div className="flex flex-col space-y-2.5 font-sans">
                       <div className="flex items-center text-gray-600">
                         <Calendar className="w-4 h-4 mr-2 text-amber-500" />
                         <span className="text-sm">{pkg.duration} days, {pkg.nights} nights</span>

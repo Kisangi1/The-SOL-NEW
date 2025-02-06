@@ -29,7 +29,7 @@ export function DestinationCard({
           <p className="text-sm text-white capitalize">
             kes. {price}
           </p>
-          <Link href={`/packages/${title.toLowerCase().replace(/\s+/g, '-')}`}>
+          <Link href='/packages'>
             <Button variant="secondary" size="sm">
               View Details
             </Button>
