@@ -86,7 +86,7 @@ export default function ContactPage() {
   ]
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-orange-50 to-white font-sans">
+    <section className="min-h-screen bg-gradient-to-b from-orange-50 to-white font-sans overflow-x-hidden">
       {/* Enhanced Banner Section */}
       <div className="relative h-[30vh] sm:h-[40vh] md:h-[50vh] lg:h-[60vh] w-full overflow-hidden">
         <Image
@@ -112,7 +112,7 @@ export default function ContactPage() {
       </div>
 
       {/* Contact Content */}
-      <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
+      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
         <div className="text-center mb-6 sm:mb-8 md:mb-12 lg:mb-16">
           <div className="inline-flex items-center justify-center mb-3 sm:mb-4 md:mb-6">
             <span className="text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wide text-orange-800 bg-orange-100 px-3 sm:px-4 py-1 sm:py-2 rounded-full">
@@ -199,8 +199,8 @@ export default function ContactPage() {
             </h4>
 
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="col-span-2 sm:col-span-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="col-span-1 sm:col-span-1">
                   <Label htmlFor="fullName" className="block mb-2 text-sm font-semibold">
                     Full Name
                     <span className="text-red-600">*</span>
@@ -214,7 +214,7 @@ export default function ContactPage() {
                     required
                   />
                 </div>
-                <div className="col-span-2 sm:col-span-1">
+                <div className="col-span-1 sm:col-span-1">
                   <Label htmlFor="email" className="block mb-2 text-sm font-semibold">
                     Email
                     <span className="text-red-600">*</span>
