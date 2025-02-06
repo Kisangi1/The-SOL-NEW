@@ -12,7 +12,7 @@ export default async function PackageDetailPage({ params }: { params: { id: stri
   }
 
   return (
-    <div>
+    <div className="bg-gradient-to-b from-orange-50 to-white">
       <PackageDetails package={packageData} />
     </div>
   );

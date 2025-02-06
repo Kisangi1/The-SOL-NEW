@@ -35,7 +35,7 @@ export default async function PackagesPage({
   const { packages, totalPages } = await getPackages(page)
   
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gradient-to-b from-orange-50 to-white">
       {/* Hero Banner */}
       <div className="relative h-[50vh] sm:h-[55vh] md:h-[60vh] lg:h-[70vh] xl:h-[80vh] w-full overflow-hidden">
         <Image
