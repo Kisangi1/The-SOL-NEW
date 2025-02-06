@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
+import Image from "next/image"
 
 interface CarouselItem {
   image: string
@@ -69,9 +70,16 @@ export default function HeroCarousel() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1, ease: "easeInOut" }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${currentItem.image})` }}
+          className="absolute inset-0"
         >
+          <Image
+            src={currentItem.image || "/placeholder.svg"}
+            alt={currentItem.title}
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
         </motion.div>
@@ -146,7 +154,9 @@ export default function HeroCarousel() {
       </div>
 
       {/* Preload next image */}
-      <div className="hidden" style={{ backgroundImage: `url(${nextItem.image})` }} />
+      <div className="hidden">
+        <Image src={nextItem.image || "/placeholder.svg"} alt={nextItem.title} width={1} height={1} />
+      </div>
     </section>
   )
 }
