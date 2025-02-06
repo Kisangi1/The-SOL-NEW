@@ -11,58 +11,58 @@ interface DestinationCardProps {
   location?: string
 }
 
-const DestinationCard = ({ 
+const DestinationCard = ({
   id,
-  image, 
-  title, 
+  image,
+  title,
   price,
-  location 
+  location
 }: DestinationCardProps) => {
   return (
     <div className="group relative flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-lg">
-      {/* Image Container */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
+      {/* Image Container - Changed aspect ratio to make image larger */}
+      <div className="relative aspect-[3/2] w-full overflow-hidden">
         <Image
           src={image}
           alt={title}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, 
+          sizes="(max-width: 640px) 100vw,
                  (max-width: 768px) 50vw,
                  (max-width: 1024px) 33vw,
                  25vw"
         />
       </div>
       
-      {/* Content Container */}
-      <div className="relative flex h-full flex-col p-4">
-        {/* Title */}
-        <h3 className="mb-2 line-clamp-2 text-lg font-semibold text-gray-900 sm:text-xl">
+      {/* Content Container - Minimized padding */}
+      <div className="relative flex min-h-fit flex-col p-2">
+        {/* Title - Reduced margin */}
+        <h3 className="mb-1 line-clamp-2 text-lg font-semibold text-gray-900 sm:text-xl">
           {title}
         </h3>
         
-        {/* Location */}
+        {/* Location - Reduced margin */}
         {location && (
-          <div className="mb-3 flex items-center gap-1.5 text-gray-600">
+          <div className="mb-1 flex items-center gap-1.5 text-gray-600">
             <MapPin className="h-4 w-4" />
             <span className="text-sm">{location}</span>
           </div>
         )}
         
-        {/* Price Section */}
-        <div className="mt-auto space-y-4">
-          <div className="space-y-1">
+        {/* Price Section - Minimized spacing */}
+        <div className="mt-1 space-y-1.5">
+          <div>
             <p className="text-sm text-gray-600">Starting from</p>
             <p className="text-xl font-bold text-gray-900">
               KES {price.toLocaleString()}
             </p>
           </div>
           
-          {/* Button */}
+          {/* Button - Reduced padding */}
           <Link href={`/packages/${id}`} className="block w-full">
-            <Button 
+            <Button
               variant="secondary"
-              className="w-full bg-amber-600 py-2 text-sm font-medium text-white transition-colors hover:bg-amber-700"
+              className="w-full bg-amber-600 py-1 text-sm font-medium text-white transition-colors hover:bg-amber-700"
             >
               View Details
             </Button>
