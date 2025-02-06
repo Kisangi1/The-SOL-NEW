@@ -49,11 +49,11 @@ const HeroSection = () => {
 // Gallery Images Configuration
 const galleryImages = [
   {
-    src: '/images/one.jpg',
+    src: '/images/one.webp',
     alt: 'Rhino in the savannah'
   },
   {
-    src: '/images/three.jpg',
+    src: '/images/three.webp',
     alt: 'Gazelles grazing in the wild'
   },
   {
@@ -61,7 +61,7 @@ const galleryImages = [
     alt: 'Elephants at the field'
   },
   {
-    src: '/images/two.jpg',
+    src: '/images/two.webp',
     alt: 'Mount Kilimanjaro at dawn'
   },
   {
