@@ -9,7 +9,7 @@ import HomeSection from '@/components/home/homepage'
 
 function HomePage() {
   return (
-    <div className='bg-green-50'>
+    <div className='bg-gradient-to-b from-orange-50 to-white'>
       <ToursHeroCarousel/>
       <EcoTourismFeatures/>
       <HomeSection/>

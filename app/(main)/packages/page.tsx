@@ -64,7 +64,7 @@ export default async function PackagesPage({
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 font-sans">
+      <div className="container mx-auto py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 font-sans bg-gradient-to-b from-orange-50 to-white">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">

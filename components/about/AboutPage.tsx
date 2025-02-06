@@ -56,7 +56,7 @@ export default function AboutPageComponent () {
   ];
 
   return (
-    <div className="min-h-screen font-sans">
+    <div className="min-h-screen font-sans ">
       {/* Hero Section */}
       <div className="relative h-[60vh] sm:h-[70vh] lg:h-[80vh] overflow-hidden">
         <Image
