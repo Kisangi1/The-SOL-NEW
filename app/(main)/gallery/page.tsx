@@ -68,18 +68,18 @@ const galleryImages = [
     src: '/images/c.jpg',
     alt: 'Lion resting under a tree'
   },
-  {
-    src: '/images/d.jpg',
-    alt: 'Giraffes in the wild'
-  },
+  // {
+  //   src: '/images/d.jpg',
+  //   alt: 'Giraffes in the wild'
+  // },
   {
     src: '/images/e.jpg',
     alt: 'Vultures eating a carcass'
-  },
-  {
-    src: '/images/b.jpg',
-    alt: 'Zebra herd in the savannah'
   }
+  // {
+  //   src: '/images/b.jpg',
+  //   alt: 'Zebra herd in the savannah'
+  // }
 ];
 
 // Gallery Grid Component
