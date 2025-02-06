@@ -4,6 +4,7 @@ import Link from "next/link"
 import { MapPin } from "lucide-react"
 
 interface DestinationCardProps {
+  id: string
   image: string
   title: string
   price: number
@@ -11,6 +12,7 @@ interface DestinationCardProps {
 }
 
 const DestinationCard = ({ 
+  id,
   image, 
   title, 
   price,
@@ -18,7 +20,6 @@ const DestinationCard = ({
 }: DestinationCardProps) => {
   return (
     <div className="group relative overflow-hidden rounded-lg bg-white shadow-lg transition-transform hover:shadow-xl">
-      {/* Image container with responsive height */}
       <div className="relative h-48 w-full sm:h-56 md:h-64 lg:h-[300px]">
         <Image
           src={image}
@@ -32,7 +33,6 @@ const DestinationCard = ({
         />
       </div>
       
-      {/* Content overlay with responsive padding and font sizes */}
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-3 sm:p-4 md:p-5 lg:p-6">
         <div className="space-y-2 sm:space-y-3">
           <h3 className="text-lg font-semibold text-white sm:text-xl md:text-xl lg:text-2xl line-clamp-2">
@@ -54,7 +54,7 @@ const DestinationCard = ({
               </p>
             </div>
             
-            <Link href="/packages" className="block">
+            <Link href={`/packages/${id}`} className="block">
               <Button 
                 variant="secondary"
                 size="sm"
