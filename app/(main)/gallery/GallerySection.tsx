@@ -8,11 +8,11 @@ const images = [
     featured: true
   },
   {
-    src: '/images/two.jpg',
+    src: '/images/two.webp',
     alt: 'Conference attendee in Next.js t-shirt'
   },
   {
-    src: '/images/three.jpg',
+    src: '/images/three.webp',
     alt: 'Conference auditorium view'
   },
   {
