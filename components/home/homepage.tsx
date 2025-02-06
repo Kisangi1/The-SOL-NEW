@@ -45,7 +45,7 @@ export default function HomePage() {
           <div className="inline-flex items-center rounded-full bg-amber-600 px-4 py-1 text-sm text-white">
             Made for you
           </div>
-          <h2 className="text-xl md:text-2xl lg:text-2xl xl:text-4xl font-bold mb-2 mt-4">
+          <h2 className="text-xl md:text-xl lg:text-xl xl:text-2xl font-bold mb-2 mt-4">
             Where to next?
           </h2>
           {loading ? (
