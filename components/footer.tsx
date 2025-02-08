@@ -6,8 +6,6 @@ import { z } from 'zod';
 import { FaTiktok } from "react-icons/fa";
 import { toast } from 'sonner';
 
-
-
 const emailSchema = z.string().email({ message: "Invalid email address" });
 
 const ScrollToTopButton = () => {
@@ -101,7 +99,7 @@ const AfricanToursFooter = () => {
 
   return (
     <>
-        <footer className="bg-gray-900 text-white">
+      <footer className="bg-gray-900 text-white">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Company Info */}
@@ -162,7 +160,7 @@ const AfricanToursFooter = () => {
                 ].map((item) => (
                   <li key={item}>
                     <a
-                      href={`/destinations/${item}`}
+                      href={`/${item}`}
                       className="text-gray-300 hover:text-orange-500 transition-colors duration-200 block py-1"
                     >
                       {item.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
