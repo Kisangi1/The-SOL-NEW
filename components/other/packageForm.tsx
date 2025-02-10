@@ -210,7 +210,7 @@ export default function PackageForm({ package: packageData, isEdit }: PackageFor
 
 <div>
   <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
-    Amount (KES)
+    Amount (USD)
   </label>
   <input
     type="number"

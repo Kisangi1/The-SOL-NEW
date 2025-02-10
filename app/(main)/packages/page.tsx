@@ -123,7 +123,7 @@ export default async function PackagesPage({
                       <div className="flex items-baseline space-x-1 font-sans capitalize">
                     <span className=" text-gray-500">From</span>
                     <span className=" font-bold text-gray-900">
-                      KES {pkg.amount.toLocaleString()}
+                      ${pkg.amount.toLocaleString()}
                     </span>
                     <span className="text-gray-500">Per Person</span>
                   </div>
