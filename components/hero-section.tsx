@@ -44,9 +44,9 @@ const carouselItems: CarouselItem[] = [
     link: "/packages",
   },
   {
-    image: "/images/diving.jpg",
+    image: "/images/diving.webp",
     title: "Dive in the tropical waters of Indian Ocean",
-    subtitle: "From KES 11,200 Per Person",
+    subtitle: "From USD 86.15 Per Person",
     tag: "FEATURED TRAVEL",
     link: "/packages",
   },
