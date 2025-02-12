@@ -63,9 +63,9 @@ export default function AboutPageComponent() {
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6">
               Understand<span className="text-orange-400"> our</span> story
             </h1>
-            <p className="text-white text-xl md:text-2xl max-w-2xl">
+            {/* <p className="text-white text-xl md:text-2xl max-w-2xl">
               Embark on a journey through the heart of Africa with Sol of African
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
