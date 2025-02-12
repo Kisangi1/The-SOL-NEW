@@ -43,6 +43,13 @@ const carouselItems: CarouselItem[] = [
     tag: "FEATURED TRAVEL",
     link: "/packages",
   },
+  {
+    image: "/images/diving.jpg",
+    title: "Dive in the tropical waters of Indian Ocean",
+    subtitle: "From KES 11,200 Per Person",
+    tag: "FEATURED TRAVEL",
+    link: "/packages",
+  },
 ]
 
 export default function HeroCarousel() {
