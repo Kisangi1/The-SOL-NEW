@@ -30,7 +30,7 @@ const carouselItems: CarouselItem[] = [
     link: "/packages",
   },
   {
-    image: "/images/public/images/ambolife.jpg",
+    image: "/images/ambolife.jpg",
     title: "Safari Escape Deals",
     subtitle: "From KES 39,830 Per Person",
     tag: "FEATURED TRAVEL",
