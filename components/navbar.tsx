@@ -85,13 +85,13 @@ const Navbar = () => {
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
+                {/* <NavigationMenuItem>
                   <Link href="/blogs" legacyBehavior passHref>
                     <NavigationMenuLink className="text-white hover:text-orange-500 transition-colors">
                       Blogs
                     </NavigationMenuLink>
                   </Link>
-                </NavigationMenuItem>
+                </NavigationMenuItem> */}
                 <NavigationMenuItem>
                   <Link href="/gallery" legacyBehavior passHref>
                     <NavigationMenuLink className="text-white hover:text-orange-500 transition-colors">
@@ -174,9 +174,9 @@ const MobileNav = ({ onClose }: { onClose: () => void }) => {
           <Link href="/packages" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
             Safari Packages
           </Link>
-          <Link href="/blogs" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
+          {/* <Link href="/blogs" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
             Blogs
-          </Link>
+          </Link> */}
           <Link href="/gallery" className="py-2 text-lg hover:text-orange-500 transition-colors" onClick={onClose}>
             Gallery
           </Link>

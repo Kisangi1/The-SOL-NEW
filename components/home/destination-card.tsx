@@ -54,7 +54,7 @@ const DestinationCard = ({
           <div>
             <p className="text-sm text-gray-600">Starting from</p>
             <p className="text-xl font-bold text-gray-900">
-              KES {price.toLocaleString()}
+               ${price.toLocaleString()}
             </p>
           </div>
           

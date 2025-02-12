@@ -207,7 +207,7 @@ const PackagesPage = ({
                         <div className="flex items-center gap-2 font-sans mt-4">
                           <span className="text-gray-500">From</span>
                           <span className="font-semibold text-gray-900">
-                            KES {pkg.amount.toLocaleString()}
+                            ${pkg.amount.toLocaleString()}
                           </span>
                           <span className="text-gray-500">Per Person</span>
                         </div>

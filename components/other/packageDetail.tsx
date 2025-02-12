@@ -174,7 +174,7 @@ export default function PackageDetails({ package: packageData }: PackageDetailsP
                       <div className="flex justify-between items-center pb-2 sm:pb-3 border-b">
                         <span className="text-gray-600 text-sm sm:text-base">Price</span>
                         <span className="text-sm sm:text-base md:text-lg font-bold text-amber-600">
-                          Ksh {packageData.amount.toLocaleString()}/-
+                          ${packageData.amount.toLocaleString()}
                         </span>
                       </div>
                     </div>

@@ -1,4 +1,5 @@
 'use client'
+
 import React, { useState, useEffect } from 'react';
 import { Facebook, Instagram, Send, ChevronUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -6,10 +7,50 @@ import { z } from 'zod';
 import { FaTiktok } from "react-icons/fa";
 import { toast } from 'sonner';
 
-
-
 const emailSchema = z.string().email({ message: "Invalid email address" });
 
+// TawkTo Widget Component
+interface TawkToAPI {
+  onLoad?: () => void;
+  visitor?: {
+    name?: string;
+    email?: string;
+    hash?: string;
+  };
+}
+
+declare global {
+  interface Window {
+    Tawk_API?: TawkToAPI;
+    Tawk_LoadStart?: Date;
+  }
+}
+
+const TawkToWidget = () => {
+  useEffect(() => {
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_LoadStart = new Date();
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://embed.tawk.to/66bbc28d146b7af4a439fee4/1i56mvvcd';
+    script.charset = 'UTF-8';
+    script.setAttribute('crossorigin', '*');
+
+    document.body.appendChild(script);
+
+    return () => {
+      const tawkScript = document.querySelector(`script[src="${script.src}"]`);
+      if (tawkScript && tawkScript.parentNode) {
+        tawkScript.parentNode.removeChild(tawkScript);
+      }
+    };
+  }, []);
+
+  return null;
+};
+
+// ScrollToTop Component
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -37,7 +78,7 @@ const ScrollToTopButton = () => {
     <button
       onClick={scrollToTop}
       aria-label="Scroll to top"
-      className={`fixed bottom-4 right-4 z-[60] bg-orange-600 hover:bg-orange-700 
+      className={`fixed bottom-4 left-4 z-[60] bg-orange-600 hover:bg-orange-700 
         text-white rounded-full cursor-pointer transition-all duration-300 ease-in-out
         w-12 h-12 flex items-center justify-center shadow-lg
         hover:shadow-xl transform hover:-translate-y-1
@@ -49,6 +90,7 @@ const ScrollToTopButton = () => {
   );
 };
 
+// Main Footer Component
 const AfricanToursFooter = () => {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
@@ -59,7 +101,6 @@ const AfricanToursFooter = () => {
     setIsLoading(true);
 
     try {
-      // Validate email
       emailSchema.parse(email);
 
       const response = await fetch('/api/subscribe', {
@@ -101,7 +142,7 @@ const AfricanToursFooter = () => {
 
   return (
     <>
-        <footer className="bg-gray-900 text-white">
+      <footer className="bg-gray-900 text-white relative">
         <div className="container mx-auto px-4 py-12 md:py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {/* Company Info */}
@@ -162,7 +203,7 @@ const AfricanToursFooter = () => {
                 ].map((item) => (
                   <li key={item}>
                     <a
-                      href={`/destinations/${item}`}
+                      href={`/${item}`}
                       className="text-gray-300 hover:text-orange-500 transition-colors duration-200 block py-1"
                     >
                       {item.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
@@ -202,7 +243,7 @@ const AfricanToursFooter = () => {
           </div>
 
           {/* Bottom Bar */}
-          <div className="mt-12 pt-8 border-t border-gray-800 font-sans">
+          <div className="mt-12 pt-8 border-t border-gray-800">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="text-gray-400 text-sm">
                 © {currentYear} Sol Of African Tours. All rights reserved.
@@ -223,6 +264,7 @@ const AfricanToursFooter = () => {
         </div>
       </footer>
       <ScrollToTopButton />
+      <TawkToWidget />
     </>
   );
 };

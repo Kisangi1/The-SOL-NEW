@@ -45,7 +45,7 @@ export async function POST(request: Request) {
         <li>End Date: ${new Date(endDate).toLocaleDateString()}</li>
       </ul>
       <p>We will contact you shortly with more information.</p>
-      <p>If you have any questions, please contact us at +254 706 294505</p>
+      <p>If you have any questions, please contact us at 0768453819</p>
       <p>Best regards,<br>The Sol Of African Team</p>
     `,
     )

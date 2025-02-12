@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import FeaturesSection from "@/components/home/features-section"
-import { BlogsSection } from "@/components/home/offers-section"
+// import { BlogsSection } from "@/components/home/offers-section"
 import DestinationCard from "@/components/home/destination-card"
 import { DestinationSkeleton } from "@/components/home/destination-sketelon"
 
@@ -83,7 +83,7 @@ export default function HomePage() {
       </section>
 
       <FeaturesSection />
-      <BlogsSection />
+      {/* <BlogsSection /> */}
     </main>
   )
 }

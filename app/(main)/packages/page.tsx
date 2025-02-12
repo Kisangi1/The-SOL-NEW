@@ -11,7 +11,7 @@ import PackageCardSkeleton from "@/components/other/packageCardskeleton"
 export const dynamic = 'force-dynamic'
 
 async function getPackages(page: number = 1) {
-  const pageSize = 9
+  const pageSize = 6
   const skip = (page - 1) * pageSize
   
   const [packages, total] = await Promise.all([
@@ -53,11 +53,11 @@ export default async function PackagesPage({
                 Discover Africa&apos;s Finest Travel Experiences
               </span>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 leading-tight">
-                Exclusive <span className="text-amber-500">Travel</span> Packages
+                Exclusive <span className="text-amber-400">Travel</span> Packages
               </h1>
-              <p className="text-gray-200 text-sm sm:text-base md:text-lg max-w-2xl">
+              {/* <p className="text-gray-200 text-sm sm:text-base md:text-lg max-w-2xl">
                 Embark on unforgettable journeys across Africa with our carefully curated travel packages
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default async function PackagesPage({
                       <div className="flex items-baseline space-x-1 font-sans capitalize">
                     <span className=" text-gray-500">From</span>
                     <span className=" font-bold text-gray-900">
-                      KES {pkg.amount.toLocaleString()}
+                      ${pkg.amount.toLocaleString()}
                     </span>
                     <span className="text-gray-500">Per Person</span>
                   </div>

@@ -27,12 +27,7 @@ interface TawkToAPI {
   };
 }
 
-declare global {
-  interface Window {
-    Tawk_API?: TawkToAPI;
-    Tawk_LoadStart?: Date;
-  }
-}
+export type { TawkToAPI };
 
 const TawkToWidget = () => {
   useEffect(() => {
@@ -43,7 +38,7 @@ const TawkToWidget = () => {
     // Load the script
     const script = document.createElement('script');
     script.async = true;
-    script.src = 'https://embed.tawk.to/672deb174304e3196adf4649/1ic5lsm4o';
+    script.src = 'https://embed.tawk.to/66bbc28d146b7af4a439fee4/1i56mvvcd';
     script.charset = 'UTF-8';
     script.setAttribute('crossorigin', '*');
 
