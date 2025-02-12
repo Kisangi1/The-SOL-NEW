@@ -16,7 +16,7 @@ interface CarouselItem {
 
 const carouselItems: CarouselItem[] = [
   {
-    image: "/images/one.webp",
+    image: "/images/lionmara.jpg",
     title: "Park Adventures Await",
     subtitle: "From KES 16,000 Per Person Sharing",
     tag: "FEATURED TRAVEL",
