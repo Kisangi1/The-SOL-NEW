@@ -27,12 +27,7 @@ interface TawkToAPI {
   };
 }
 
-declare global {
-  interface Window {
-    Tawk_API?: TawkToAPI;
-    Tawk_LoadStart?: Date;
-  }
-}
+export type { TawkToAPI };
 
 const TawkToWidget = () => {
   useEffect(() => {
