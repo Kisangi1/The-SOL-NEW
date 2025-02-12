@@ -37,7 +37,7 @@ const carouselItems: CarouselItem[] = [
     link: "/packages",
   },
   {
-    image: "/images/four.webp",
+    image: "/images/boatdiani.jpg",
     title: "Coastal Getaway Bliss",
     subtitle: "From KES 6,500 Per Person",
     tag: "FEATURED TRAVEL",
