@@ -16,7 +16,7 @@ interface CarouselItem {
 
 const carouselItems: CarouselItem[] = [
   {
-    image: "/images/one.webp",
+    image: "/images/lionmara.webp",
     title: "Park Adventures Await",
     subtitle: "From USD 160 Per Person Sharing",
     tag: "FEATURED TRAVEL",
@@ -30,16 +30,23 @@ const carouselItems: CarouselItem[] = [
     link: "/packages",
   },
   {
-    image: "/images/three.webp",
+    image: "/images/ambolife.jpg",
     title: "Safari Escape Deals",
     subtitle: "From USD 398 Per Person",
     tag: "FEATURED TRAVEL",
     link: "/packages",
   },
   {
-    image: "/images/four.webp",
+    image: "/images/boatdiani.jpg",
     title: "Coastal Getaway Bliss",
     subtitle: "From USD 650 Per Person",
+    tag: "FEATURED TRAVEL",
+    link: "/packages",
+  },
+  {
+    image: "/images/diving.webp",
+    title: "Dive in the tropical waters of Indian Ocean",
+    subtitle: "From USD 86.15 Per Person",
     tag: "FEATURED TRAVEL",
     link: "/packages",
   },
