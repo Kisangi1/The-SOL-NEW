@@ -33,8 +33,8 @@ export default function AboutPageComponent() {
       quote: "Bringing Africa's magic to life through unforgettable journeys.",
     },
     {
-      name: "Faith Aboki",
-      role: "Travel Coordinator",
+      name: "Nelson Pere",
+      role: "Driver/Guide",
       image: "/placeholder.svg?height=400&width=300",
       quote: "Creating seamless experiences across the African continent.",
     },
